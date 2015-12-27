@@ -4,8 +4,8 @@
 
 
 Player::Player()
-	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.0001),
-	rotationSpeed(0.1), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(0.1),
+	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
+	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5),
 	size(1), x(100), y(100), rotation(0), isAlive(true)
 {
 				// Player position in the game world

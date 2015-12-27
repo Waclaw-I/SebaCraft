@@ -14,5 +14,6 @@ void LoadController::LoadTextures()
 	//{
 		TexturesArray[0].LoadTexture("Graphs\\Player\\BasicShip.png"); // We want to initialize all textures to prevent loading graphs during the game
 		TexturesArray[1].LoadTexture("Graphs\\Enemies\\Medivac.png");
+		TexturesArray[2].LoadTexture("Graphs\\Enemies\\SmallFighter.png");
 	//}
 }

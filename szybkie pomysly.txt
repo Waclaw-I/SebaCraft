@@ -12,8 +12,6 @@ w kierunku kursora. (bêdzie trzeba przeprowadziæ obliczenia trygonometryczne).
 Do stworzenia klasa Display, ktora wyswietla wszystkie sprite'y na ekran. Dostaje tak¿e logikê, ktora jest
 wczesniej liczona indywidualnie przez obiekty (np draw(Player), player_x, player_y, player_rotation);
 
-Jakis timer? - obowiazkowo. SebaCraft bedzie przeciez zapierdalal na moim ultra PC'cie
-
 Stworzyc klase przechwytujaca input i przekazujaca go do klasy wykonujacej logike statku
 
 Klasa display posiada metode do wywolywania metod Draw(), ktora jest przeciazana dla wszystkich obiektow
@@ -21,13 +19,11 @@ Klasa display posiada metode do wywolywania metod Draw(), ktora jest przeciazana
 
 TODOS:
 
-wrzuciæ timer. Na kompie w domu dzia³a 3x szybciej
 
 W DisplayControllerze stworzyc liste obiektow graficznych, ktore beda polaczone kluczem z obiektami logicznymi
 Obiekt logiczny zostaje zniszczony - przepinamy wskaznik.
 
-Obracanie sie przeciwnika w strone gracza i zwalnianie/przyspieszanie przy odpowiedniej odleglosci
 Ograniczenie predkosci obrotu przeciwnikow
 
-Ogarnac zwiekszanie sie sprite'a w zaleznosci od podanego size w konstruktorze (setScale?)
+skala statkow dziala do pewnego poziomu (dla 3 juz sie cos pierdoli)
 
