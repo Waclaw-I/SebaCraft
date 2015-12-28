@@ -7,6 +7,8 @@ class EnemyShip // this is our parent class of the enemy. Everything what every 
 {
 protected:
 
+	string tag;
+
 	int actualHealth;
 	double actualSpeed_x;
 	double actualSpeed_y;
@@ -18,6 +20,9 @@ protected:
 	int attackPower;
 	double fireRate;
 
+	int size_x;
+	int size_y;
+
 	double x;
 	double y;
 	double rotation;
@@ -28,10 +33,12 @@ protected:
 
 public:
 
-	EnemyShip(int HP, double Acc, double RS, int MHP, double MS, int _x, int _y, double _rotation, int AP, double FR );
+	EnemyShip(int size_x, int size_y );
 
 	double Get_x_Position();
 	double Get_y_Position();
+	int GetSize_x();
+	int GetSize_y();
 	double Get_Rotation();
 	double Get_ActualSpeed_x();
 	double Get_ActualSpeed_y();

@@ -18,17 +18,19 @@ using namespace std;
 
 int main()
 {
-	LoadController Loader(3);
+	LoadController Loader(3, 1);
 
 	Loader.LoadTextures(); // these are just textures of our objects
 
 	// actual objects are created here
-	SpriteHolder SebamusSprite(Loader.TexturesArray[0], Loader.TexturesArray[0].Get_x(), Loader.TexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
+	SpriteHolder SebamusSprite(Loader.ShipTexturesArray[0], Loader.ShipTexturesArray[0].Get_x(), Loader.ShipTexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
+	SpriteHolder SmallFighterSprite(Loader.ShipTexturesArray[2], Loader.ShipTexturesArray[2].Get_x(), Loader.ShipTexturesArray[2].Get_y(), 90, 1);
 
-	Player Sebamus;	// our HERO and all his logics
-	EnemyShip Statek(1,0.1, 0.1,1,1.5,300,300,1,1,1);
+	Player Sebamus(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
+	EnemyShip Statek(SmallFighterSprite.GetSize_x(), SmallFighterSprite.GetSize_y());
 
-	SpriteHolder SmallFighterSprite(Loader.TexturesArray[2], Loader.TexturesArray[2].Get_x(), Loader.TexturesArray[2].Get_y(), 90, 1);
+	
+
 	
 
 	RenderWindow MainWindow(VideoMode(800, 600, 32), "SebaCraft"); // main window. Need to think about the proper size
@@ -59,14 +61,16 @@ int main()
 			SmallFighterSprite.MySprite.setPosition(static_cast<float>(Statek.Get_x_Position()), static_cast<float>(Statek.Get_y_Position()));
 			SmallFighterSprite.MySprite.setRotation(Statek.Get_Rotation());
 
+
+
 			PlayerController::Moving(Sebamus); // controls movements of the player
 			Statek.FollowPlayer(Sebamus);
-			//Statek.Accelerate();
 			Statek.Move();
 
 			MainWindow.clear();
 			MainWindow.draw(SebamusSprite.MySprite);
 			MainWindow.draw(SmallFighterSprite.MySprite);
+
 
 
 			MainWindow.display();

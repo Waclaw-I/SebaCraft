@@ -1,9 +1,18 @@
 #pragma once
 
+#include <string>
+using namespace std;
+
 
 class Player
 {
 private:
+
+	string tag;
+
+	int size_x;
+	int size_y;
+
 	int actualHealth; // actual health, energy and capacity
 	int actualEnergy;
 	int actualCapacity;
@@ -19,14 +28,14 @@ private:
 	int maxCapacity;
 	double maxSpeed; // we are in space though :P
 	
-	int size;		// Size of the ship. At this version we ll be able to buy one upgrade (at least I hope so)
+	int level;		// Level of the ship. At this version we ll be able to buy one upgrade (at least I hope so)
 
 	double x;
 	double y;
 	double rotation;
 
 public:
-	Player();
+	Player(int, int);
 
 	void GainHealth(int);
 	void GainEnergy(int);
@@ -43,6 +52,8 @@ public:
 
 	double Get_x_Position();				// methods for returning position to Displayer class
 	double Get_y_Position();
+	int GetSize_x();
+	int GetSize_y();
 	double Get_Rotation();
 	double Get_RotationSpeed();
 	double Get_ActualSpeed_x();

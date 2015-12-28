@@ -9,6 +9,9 @@ double EnemyShip::Get_x_Position() { return x; }
 
 double EnemyShip::Get_y_Position() { return y; }
 
+int EnemyShip::GetSize_x() { return x; }
+int EnemyShip::GetSize_y() { return y; }
+
 double EnemyShip::Get_Rotation() { return rotation; }
 
 double EnemyShip::Get_ActualSpeed_x() { return actualSpeed_x; }
@@ -19,10 +22,31 @@ bool EnemyShip::Get_IsAlive(){ return isAlive; }
 
 void EnemyShip::LooseHealth(int amount) { actualHealth -= amount; }
 
-EnemyShip::EnemyShip(int HP, double Acc, double RS, int MHP, double MS, int _x, int _y, double _rotation, int AP, double FR): 
-	actualHealth(HP), actualSpeed_x(0), actualSpeed_y(0), acceleration(Acc), rotationSpeed(RS),
-	maxHealth(MHP), maxSpeed(MS), x(_x), y(_y), rotation(_rotation), attackPower(AP), fireRate(FR),  isAlive(true)
+EnemyShip::EnemyShip(int size_x, int size_y)
 {
+	tag = "Enemy";
+
+	this->size_x = size_x;
+	this->size_y = size_y;
+
+	maxHealth = 100;
+	maxSpeed = 1.5;
+
+	actualHealth = maxHealth;
+	actualSpeed_x = 0;
+	actualSpeed_y = 0;
+
+	acceleration = 0.1;
+
+	fireRate = 0.2;
+	attackPower = 1;
+
+	rotation = 90;
+	rotationSpeed = 5;
+
+	x = 300;
+	y = 300;
+
 
 }
 

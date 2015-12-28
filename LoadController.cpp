@@ -3,17 +3,25 @@
 
 
 
-LoadController::LoadController(int size) : AmountOfTextures(size)
+LoadController::LoadController(int ShipAmount, int BulletAmount) : AmountOfShipTextures(ShipAmount), AmountOfBulletTextures(BulletAmount)
 {
-	TexturesArray = new TextureLoader[AmountOfTextures];
+	ShipTexturesArray = new TextureLoader[AmountOfShipTextures];
+	BulletTextureArray = new TextureLoader[AmountOfBulletTextures];
 }
 
 void LoadController::LoadTextures()
 {
-	//for (int i = 0; i < AmountOfTextures; i++)
-	//{
-		TexturesArray[0].LoadTexture("Graphs\\Player\\BasicShip.png"); // We want to initialize all textures to prevent loading graphs during the game
-		TexturesArray[1].LoadTexture("Graphs\\Enemies\\Medivac.png");
-		TexturesArray[2].LoadTexture("Graphs\\Enemies\\SmallFighter.png");
-	//}
+
+		ShipTexturesArray[0].LoadTexture("Graphs\\Player\\BasicShip.png"); // We want to initialize all textures to prevent loading graphs during the game
+		ShipTexturesArray[1].LoadTexture("Graphs\\Enemies\\Medivac.png");
+		ShipTexturesArray[2].LoadTexture("Graphs\\Enemies\\SmallFighter.png");
+
+
+		BulletTextureArray[0].LoadTexture("Graphs\\Bullets\\MachineGunBullet.png");
+}
+
+LoadController::~LoadController()
+{
+	delete [] ShipTexturesArray;
+	delete [] BulletTextureArray;
 }

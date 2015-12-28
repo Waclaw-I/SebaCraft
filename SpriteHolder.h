@@ -13,8 +13,8 @@ class SpriteHolder
 	friend class DisplayController;
 
 private: // informations about size, not position in the game world!
-	double x;
-	double y;
+	double size_x;
+	double size_y;
 	double rotation;
 	double scale;
 
@@ -24,12 +24,12 @@ private: // informations about size, not position in the game world!
 public:
 	Sprite MySprite;
 
-	double Get_x() { return x; }
-	double Get_y() { return y; }
-	double Get_rotation(){ return rotation; }
-	double Get_size() { return scale; }
-	double Get_x_center() { return x_center; }
-	double Get_y_center() { return y_center; }
+	double GetSize_x();
+	double GetSize_y();
+	double Get_rotation();
+	double Get_size();
+	double Get_x_center();
+	double Get_y_center();
 
 
 	

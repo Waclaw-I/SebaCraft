@@ -3,18 +3,26 @@
 
 
 
-Player::Player()
+Player::Player(int size_x, int size_y)
 	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
 	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5),
-	size(1), x(100), y(100), rotation(0), isAlive(true)
+	level(1), x(100), y(100), rotation(0), isAlive(true)
 {
 				// Player position in the game world
 				// rotation which is needed to rotate the ship and to calculate the vector of thrust
+	tag = "Player";
+
+	this->size_x = size_x;
+	this->size_y = size_y;
 }
 
 double Player::Get_x_Position() {return x;}
 
 double Player::Get_y_Position() {return y;}
+
+int Player::GetSize_x() { return size_x; }
+
+int Player::GetSize_y() { return size_y; }
 
 double Player::Get_Rotation() {return rotation;}
 

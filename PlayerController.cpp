@@ -1,14 +1,7 @@
 #include "PlayerController.h"
 
-
-
 using namespace sf;
 using namespace std;
-
-
-
-
-
 
 
 void PlayerController::Moving(Player & Sebamus)

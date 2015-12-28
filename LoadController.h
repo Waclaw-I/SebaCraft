@@ -8,10 +8,15 @@ class LoadController
 private:
 
 public:
-	int AmountOfTextures;
-	TextureLoader * TexturesArray; // Table with our textures, where 0 is for player. There is need of texture position in table knownledge
+	int AmountOfShipTextures;
+	int AmountOfBulletTextures;
 
-	LoadController(int);
+	TextureLoader * ShipTexturesArray; // Table with our textures, where 0 is for player. There is need of texture position in table knownledge
+	TextureLoader * BulletTextureArray;
+
+	LoadController(int, int);
+
+	~LoadController();
 
 	void LoadTextures();
 };
