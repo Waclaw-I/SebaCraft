@@ -1,21 +1,23 @@
 #pragma once
-#include <string>
-
-using namespace std;
-
 
 class BulletBasicClass
 {
+
 public:
 
+	BulletBasicClass(double, double, int, double, double);
 
-private:
+	virtual void Move(int);
 
-	string tag;
+protected:
+
+	double position_x;
+	double position_y;
 
 	double spawnPoint_x;
 	double spawnPoint_y;
 
 	int damage;
 	double speed;
+	double duration;
 };

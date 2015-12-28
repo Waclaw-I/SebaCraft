@@ -1,5 +1,8 @@
 #pragma once
 
+#include "SpawnPoint.h"
+#include "PlayerBullets.h"
+#include "BulletController.h"
 #include <string>
 using namespace std;
 
@@ -20,6 +23,9 @@ private:
 	double actualSpeed_y;
 	double acceleration; // how fast can you gain more speed
 	double rotationSpeed;
+
+	SpawnPoint BulletSpawn1;
+	SpawnPoint BulletSpawn2;
 
 	bool isAlive;
 
@@ -43,6 +49,8 @@ public:
 	void Accelerate();
 	void GainAcceleration(double);
 
+	void SetBulletSpawnPoints(int, int, int, int);
+
 	void LooseHealth(int);
 	void LooseEnergy(int);
 	void LooseCapacity(int);			// Substracting values from the variables
@@ -65,4 +73,6 @@ public:
 	void RotateRight();
 
 	void Move();
+
+	void ShootFromMainCannons();
 };

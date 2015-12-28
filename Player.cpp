@@ -1,7 +1,6 @@
-
 #include "Player.h"
 
-
+#include <iostream>
 
 Player::Player(int size_x, int size_y)
 	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
@@ -14,6 +13,8 @@ Player::Player(int size_x, int size_y)
 
 	this->size_x = size_x;
 	this->size_y = size_y;
+
+	SetBulletSpawnPoints(80, 8, 80, 41); // spawn points for bullets for this specific ship
 }
 
 double Player::Get_x_Position() {return x;}
@@ -41,6 +42,14 @@ void Player::GainEnergy(int amount) {if (actualEnergy < maxEnergy) actualEnergy 
 void Player::GainCapacity(int amount) {if (actualCapacity < maxCapacity) actualCapacity += amount;}
 
 void Player::GainAcceleration(double amount) {acceleration += amount;}
+
+void Player::SetBulletSpawnPoints(int x1, int y1, int x2, int y2)
+{
+	BulletSpawn1.Set_x(x1);
+	BulletSpawn1.Set_y(y1);
+	BulletSpawn2.Set_x(x2);
+	BulletSpawn2.Set_y(y2);
+}
 
 void Player::LooseHealth(int amount) {actualHealth -= amount;}
 
@@ -124,4 +133,10 @@ void Player::Move()
 {
 	x += actualSpeed_x;
 	y += actualSpeed_y;
+}
+
+void Player::ShootFromMainCannons()
+{
+	PlayerBullets * bullet = new PlayerBullets(BulletSpawn1.Get_x(), BulletSpawn1.Get_y(), 1, 2, 5); // to tez sie wykonuje
+	BulletController::InsertNewBullet(bullet);
 }

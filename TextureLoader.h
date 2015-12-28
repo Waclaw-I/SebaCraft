@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
@@ -11,11 +12,8 @@ class TextureLoader
 {
 	friend class SpriteHolder;
 	friend class LoadController;
-private:
-	Texture MyTexture;
 
-	double x;
-	double y;
+
 
 public:
 	TextureLoader();
@@ -23,5 +21,11 @@ public:
 	double Get_x();
 	double Get_y();
 
-	void LoadTexture(string);
+	void LoadTexture(string); // lokalizacja spawnpointow. To juz trzeba niestety wrzucac recznie przy tworzeniu sprite'a
+
+private:
+	Texture MyTexture;
+
+	double x;
+	double y;
 };

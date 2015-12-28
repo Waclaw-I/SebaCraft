@@ -25,3 +25,11 @@ void PlayerController::Moving(Player & Sebamus)
 
 	Sebamus.Move();
 }
+
+void PlayerController::Shooting(Player & Sebamus)
+{
+	if (Keyboard::isKeyPressed(Keyboard::Space))
+	{
+		Sebamus.ShootFromMainCannons(); // to sie wykonuje
+	}
+}

@@ -17,7 +17,7 @@ void LoadController::LoadTextures()
 		ShipTexturesArray[2].LoadTexture("Graphs\\Enemies\\SmallFighter.png");
 
 
-		BulletTextureArray[0].LoadTexture("Graphs\\Bullets\\MachineGunBullet.png");
+		BulletTextureArray[0].LoadTexture("Graphs\\Bullets\\MachineGunBullet.png"); // no spawnpoint 
 }
 
 LoadController::~LoadController()

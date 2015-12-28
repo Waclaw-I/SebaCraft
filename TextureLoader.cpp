@@ -12,6 +12,7 @@ void TextureLoader::LoadTexture(string path)
 	MyTexture.loadFromFile(path);
 	x = MyTexture.getSize().x;
 	y = MyTexture.getSize().y;
+
 }
 
 double TextureLoader::Get_x() { return x;}

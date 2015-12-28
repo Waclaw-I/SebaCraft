@@ -64,6 +64,8 @@ int main()
 
 
 			PlayerController::Moving(Sebamus); // controls movements of the player
+			PlayerController::Shooting(Sebamus);
+			BulletController::MoveBullets();
 			Statek.FollowPlayer(Sebamus);
 			Statek.Move();
 

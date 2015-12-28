@@ -19,6 +19,8 @@ Klasa display posiada metode do wywolywania metod Draw(), ktora jest przeciazana
 
 TODOS:
 
+Najpierw public, pozniej private
+
 Pobierac ze spriteow wielkosci obiektow potrzebne do kolizji oraz spawnpoint dla dzialek
 
 W DisplayControllerze stworzyc liste obiektow graficznych, ktore beda polaczone kluczem z obiektami logicznymi
