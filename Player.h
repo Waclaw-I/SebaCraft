@@ -27,6 +27,11 @@ private:
 	SpawnPoint BulletSpawn1;
 	SpawnPoint BulletSpawn2;
 
+	double rotatedSpawnPoint1_x; // we need those to spawn bullets properly
+	double rotatedSpawnPoint1_y;
+	double rotatedSpawnPoint2_x;
+	double rotatedSpawnPoint2_y;
+
 	bool isAlive;
 
 	int maxHealth;		// maximal amount at the moment. You can raise it by upgrades
@@ -50,6 +55,7 @@ public:
 	void GainAcceleration(double);
 
 	void SetBulletSpawnPoints(int, int, int, int);
+	void Calculate_SP_Positions();
 
 	void LooseHealth(int);
 	void LooseEnergy(int);
@@ -63,6 +69,7 @@ public:
 	int GetSize_x();
 	int GetSize_y();
 	double Get_Rotation();
+	double Get_RotationInRadians();
 	double Get_RotationSpeed();
 	double Get_ActualSpeed_x();
 	double Get_ActualSpeed_y();

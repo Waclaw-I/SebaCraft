@@ -16,4 +16,11 @@ BulletBasicClass::BulletBasicClass(double spawn_x, double spawn_y, int damage, d
 	position_y = spawnPoint_y;
 }
 
-void BulletBasicClass::Move(int rotation) { cout << "d"; }
+double BulletBasicClass::GetPosition_x() { return position_x; }
+double BulletBasicClass::GetPosition_y() { return position_y; }
+
+BulletBasicClass::~BulletBasicClass() {}
+
+void BulletBasicClass::Move(int rotation) {}
+
+double BulletBasicClass::GetDuration() { return duration; }

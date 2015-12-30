@@ -19,6 +19,10 @@ Klasa display posiada metode do wywolywania metod Draw(), ktora jest przeciazana
 
 TODOS:
 
+okreslanie wielkosci logicznego obiektu (wziete pod uwage skalowanie grafiki)
+
+zmniejszyc moc hamowania
+
 Najpierw public, pozniej private
 
 Pobierac ze spriteow wielkosci obiektow potrzebne do kolizji oraz spawnpoint dla dzialek

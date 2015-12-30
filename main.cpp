@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "PlayerController.h"
 #include "LoadController.h"
+#include "BulletController.h"
 
 #include "EnemyShip.h"
 
@@ -18,13 +19,11 @@ using namespace std;
 
 int main()
 {
-	LoadController Loader(3, 1);
-
-	Loader.LoadTextures(); // these are just textures of our objects
+	LoadController::LoadTextures(); // these are just textures of our objects
 
 	// actual objects are created here
-	SpriteHolder SebamusSprite(Loader.ShipTexturesArray[0], Loader.ShipTexturesArray[0].Get_x(), Loader.ShipTexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
-	SpriteHolder SmallFighterSprite(Loader.ShipTexturesArray[2], Loader.ShipTexturesArray[2].Get_x(), Loader.ShipTexturesArray[2].Get_y(), 90, 1);
+	SpriteHolder SebamusSprite(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
+	SpriteHolder SmallFighterSprite(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), 90, 1);
 
 	Player Sebamus(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
 	EnemyShip Statek(SmallFighterSprite.GetSize_x(), SmallFighterSprite.GetSize_y());
@@ -60,6 +59,12 @@ int main()
 
 			SmallFighterSprite.MySprite.setPosition(static_cast<float>(Statek.Get_x_Position()), static_cast<float>(Statek.Get_y_Position()));
 			SmallFighterSprite.MySprite.setRotation(Statek.Get_Rotation());
+			for (int i = 0; i < BulletController::ArrayOfBullets.size(); i++)
+			{
+				BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite.setPosition(static_cast<float>(BulletController::ArrayOfBullets[i]->GetPosition_x()),
+																						   static_cast<float>(BulletController::ArrayOfBullets[i]->GetPosition_y()));
+				
+			}
 
 
 
@@ -72,6 +77,11 @@ int main()
 			MainWindow.clear();
 			MainWindow.draw(SebamusSprite.MySprite);
 			MainWindow.draw(SmallFighterSprite.MySprite);
+			for (int i = 0; i < BulletController::ArrayOfBullets.size(); i++)
+			{
+				MainWindow.draw(BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite); // this ll land at DisplayController
+				
+			}
 
 
 

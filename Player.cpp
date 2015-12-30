@@ -14,7 +14,9 @@ Player::Player(int size_x, int size_y)
 	this->size_x = size_x;
 	this->size_y = size_y;
 
-	SetBulletSpawnPoints(80, 8, 80, 41); // spawn points for bullets for this specific ship
+	SetBulletSpawnPoints(38, -16, 38, 17); // spawn points for bullets for this specific ship
+
+	Calculate_SP_Positions(); // First time calculations. Later we ll use it during rotation manoeuvers
 }
 
 double Player::Get_x_Position() {return x;}
@@ -26,6 +28,11 @@ int Player::GetSize_x() { return size_x; }
 int Player::GetSize_y() { return size_y; }
 
 double Player::Get_Rotation() {return rotation;}
+
+double Player::Get_RotationInRadians()
+{
+	return (rotation * (3.14 / 180));
+}
 
 double Player::Get_RotationSpeed() {return rotationSpeed;}
 
@@ -116,17 +123,30 @@ void Player::LooseAcceleration(double amount)
 	acceleration -= amount;
 }
 
+void Player::Calculate_SP_Positions() // we can rotate our sprite, so we have to calculate new position of spawn points for bullets
+{
+	rotatedSpawnPoint1_x = BulletSpawn1.Get_x() * cos(Get_RotationInRadians()) - BulletSpawn1.Get_y() * sin(Get_RotationInRadians());
+	rotatedSpawnPoint1_y = BulletSpawn1.Get_x() * sin(Get_RotationInRadians()) + BulletSpawn1.Get_y() * cos(Get_RotationInRadians());
+
+	rotatedSpawnPoint2_x = BulletSpawn2.Get_x() * cos(Get_RotationInRadians()) - BulletSpawn2.Get_y() * sin(Get_RotationInRadians());
+	rotatedSpawnPoint2_y = BulletSpawn2.Get_x() * sin(Get_RotationInRadians()) + BulletSpawn2.Get_y() * cos(Get_RotationInRadians());
+}
+
 
 void Player::RotateLeft()
 {
 	if (rotation < 0.1) rotation = 360;
 	rotation -= rotationSpeed;
+
+	Calculate_SP_Positions();
 }
 
 void Player::RotateRight()
 {
 	if (rotation > 359.9) rotation = 0;
 	rotation += rotationSpeed;
+
+	Calculate_SP_Positions();
 }
 
 void Player::Move()
@@ -137,6 +157,7 @@ void Player::Move()
 
 void Player::ShootFromMainCannons()
 {
-	PlayerBullets * bullet = new PlayerBullets(BulletSpawn1.Get_x(), BulletSpawn1.Get_y(), 1, 2, 5); // to tez sie wykonuje
+	PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, 1, 15, 5); // to tez sie wykonuje
+	cout << rotatedSpawnPoint1_x << endl;
 	BulletController::InsertNewBullet(bullet);
 }

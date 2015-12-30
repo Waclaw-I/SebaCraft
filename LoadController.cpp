@@ -1,13 +1,8 @@
 #include "LoadController.h"
 #include "TextureLoader.h"
 
-
-
-LoadController::LoadController(int ShipAmount, int BulletAmount) : AmountOfShipTextures(ShipAmount), AmountOfBulletTextures(BulletAmount)
-{
-	ShipTexturesArray = new TextureLoader[AmountOfShipTextures];
-	BulletTextureArray = new TextureLoader[AmountOfBulletTextures];
-}
+TextureLoader LoadController::ShipTexturesArray[3]; // Table with our textures, where 0 is for player. There is need of texture position in table knownledge
+TextureLoader LoadController::BulletTextureArray[1];
 
 void LoadController::LoadTextures()
 {
@@ -17,11 +12,5 @@ void LoadController::LoadTextures()
 		ShipTexturesArray[2].LoadTexture("Graphs\\Enemies\\SmallFighter.png");
 
 
-		BulletTextureArray[0].LoadTexture("Graphs\\Bullets\\MachineGunBullet.png"); // no spawnpoint 
-}
-
-LoadController::~LoadController()
-{
-	delete [] ShipTexturesArray;
-	delete [] BulletTextureArray;
+		BulletTextureArray[0].LoadTexture("Graphs\\Bullets\\MachineGunBullet.png");
 }
