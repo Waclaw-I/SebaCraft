@@ -9,6 +9,9 @@ protected:
 
 	string tag;
 
+	double spawn_x;
+	double spawn_y;
+
 	int actualHealth;
 	double actualSpeed_x;
 	double actualSpeed_y;
@@ -30,10 +33,12 @@ protected:
 
 	bool isAlive;
 
+	SpriteHolder * MyGraph; // we need that just to be able to override our Get_MyGraph method
+
 
 public:
 
-	EnemyShip(int size_x, int size_y );
+	EnemyShip(double, double, double, double, double, int, double, double); // spawn_x, spawn_y, acc, m_health, m_speed, att_pow, firerate, rotation
 
 	double Get_x_Position();
 	double Get_y_Position();
@@ -52,6 +57,8 @@ public:
 	void RotateRight();
 	void Die();
 	void Move();
+
+	virtual SpriteHolder * Get_MyGraph();
 
 	void FollowPlayer(Player);
 	void FollowAlly(EnemyShip);

@@ -8,8 +8,10 @@
 #include "PlayerController.h"
 #include "LoadController.h"
 #include "BulletController.h"
+#include "EnemyController.h"
 
 #include "EnemyShip.h"
+#include "SmallFighter.h"
 
 #include <conio.h>
 #include <iostream>
@@ -23,10 +25,11 @@ int main()
 
 	// actual objects are created here
 	SpriteHolder SebamusSprite(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
-	SpriteHolder SmallFighterSprite(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), 90, 1);
 
 	Player Sebamus(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
-	EnemyShip Statek(SmallFighterSprite.GetSize_x(), SmallFighterSprite.GetSize_y());
+	SmallFighter * Statek = new SmallFighter(300, 300, 0.1, 100, 1.5, 1, 1, 90);
+
+	//EnemyController::InsertNewEnemyShip(Statek);
 
 	
 
@@ -57,8 +60,13 @@ int main()
 			SebamusSprite.MySprite.setPosition(static_cast<float>(Sebamus.Get_x_Position()), static_cast<float>(Sebamus.Get_y_Position()));
 			SebamusSprite.MySprite.setRotation(Sebamus.Get_Rotation());
 
-			SmallFighterSprite.MySprite.setPosition(static_cast<float>(Statek.Get_x_Position()), static_cast<float>(Statek.Get_y_Position()));
-			SmallFighterSprite.MySprite.setRotation(Statek.Get_Rotation());
+			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
+			{
+
+			}
+
+			Statek->Get_MyGraph()->MySprite.setPosition(static_cast<float>(Statek->Get_x_Position()), static_cast<float>(Statek->Get_y_Position()));
+			Statek->Get_MyGraph()->MySprite.setRotation(Statek->Get_Rotation());
 			for (int i = 0; i < BulletController::ArrayOfBullets.size(); i++)
 			{
 				BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite.setPosition(static_cast<float>(BulletController::ArrayOfBullets[i]->GetPosition_x()),
@@ -68,16 +76,15 @@ int main()
 			}
 
 
-
 			PlayerController::Moving(Sebamus); // controls movements of the player
 			PlayerController::Shooting(Sebamus);
 			BulletController::MoveBullets();
-			Statek.FollowPlayer(Sebamus);
-			Statek.Move();
+			Statek->FollowPlayer(Sebamus);
+			Statek->Move();
 
 			MainWindow.clear();
 			MainWindow.draw(SebamusSprite.MySprite);
-			MainWindow.draw(SmallFighterSprite.MySprite);
+			MainWindow.draw(Statek->Get_MyGraph()->MySprite);
 			for (int i = 0; i < BulletController::ArrayOfBullets.size(); i++)
 			{
 				MainWindow.draw(BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite); // this ll land at DisplayController

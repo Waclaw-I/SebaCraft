@@ -8,7 +8,7 @@ PlayerBullets::PlayerBullets(double spawn_x, double spawn_y, int damage, double 
 							BulletBasicClass(spawn_x, spawn_y, damage, speed, duration, rotation), tag("PlayerBullet")
 
 {
-	BulletGraph = new SpriteHolder(LoadController::BulletTextureArray[0], LoadController::BulletTextureArray[0].Get_x(), LoadController::BulletTextureArray[0].Get_y(), 90, 1);
+	BulletGraph = new SpriteHolder(LoadController::BulletTextureArray[0], LoadController::BulletTextureArray[0].Get_x(), LoadController::BulletTextureArray[0].Get_y(), rotation, 1);
 	BulletGraph->MySprite.setPosition(spawnPoint_x, spawnPoint_y);
 }
 

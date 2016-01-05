@@ -22,30 +22,25 @@ bool EnemyShip::Get_IsAlive(){ return isAlive; }
 
 void EnemyShip::LooseHealth(int amount) { actualHealth -= amount; }
 
-EnemyShip::EnemyShip(int size_x, int size_y)
+SpriteHolder * EnemyShip::Get_MyGraph() { return MyGraph; }
+
+EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health, double m_speed, int att_pow, double fire_rate, double rotation) :
+	spawn_x(spawn_x), spawn_y(spawn_y), acceleration(acc), maxHealth(m_health), maxSpeed(m_speed), attackPower(att_pow),
+	fireRate(fire_rate), rotation(rotation)
 {
 	tag = "Enemy";
 
-	this->size_x = size_x;
-	this->size_y = size_y;
-
-	maxHealth = 100;
-	maxSpeed = 1.5;
+	
 
 	actualHealth = maxHealth;
+
 	actualSpeed_x = 0;
 	actualSpeed_y = 0;
 
-	acceleration = 0.1;
+	rotationSpeed = 5; // its now working for now
 
-	fireRate = 0.2;
-	attackPower = 1;
-
-	rotation = 90;
-	rotationSpeed = 5;
-
-	x = 300;
-	y = 300;
+	x = spawn_x;
+	y = spawn_y;
 
 
 }
