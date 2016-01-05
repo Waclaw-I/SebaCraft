@@ -11,8 +11,8 @@ class PlayerBullets : public BulletBasicClass
 {
 public:
 
-	PlayerBullets(double, double, int, double, double);
-	virtual void Move(int) override;
+	PlayerBullets(double, double, int, double, double, double);
+	virtual void Move() override;
 
 	~PlayerBullets();
 

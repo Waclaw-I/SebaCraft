@@ -28,8 +28,10 @@ void PlayerController::Moving(Player & Sebamus)
 
 void PlayerController::Shooting(Player & Sebamus)
 {
-	if (Keyboard::isKeyPressed(Keyboard::Space))
+	if (Keyboard::isKeyPressed(Keyboard::Space) && (Sebamus.Get_TimeToShoot() >= Sebamus.Get_ShootingSpeed()))
 	{
-		Sebamus.ShootFromMainCannons(); // to sie wykonuje
+		Sebamus.ShootFromMainCannons();
 	}
+	Sebamus.SetTimeToShoot(0.33);
+
 }

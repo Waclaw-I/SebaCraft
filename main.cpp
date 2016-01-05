@@ -63,6 +63,7 @@ int main()
 			{
 				BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite.setPosition(static_cast<float>(BulletController::ArrayOfBullets[i]->GetPosition_x()),
 																						   static_cast<float>(BulletController::ArrayOfBullets[i]->GetPosition_y()));
+				BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite.setRotation(BulletController::ArrayOfBullets[i]->GetRotation());
 				
 			}
 

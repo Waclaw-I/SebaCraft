@@ -4,13 +4,14 @@
 
 using namespace std;
 
-BulletBasicClass::BulletBasicClass(double spawn_x, double spawn_y, int damage, double speed, double duration)
+BulletBasicClass::BulletBasicClass(double spawn_x, double spawn_y, int damage, double speed, double duration, double rotation)
 {
 	this->spawnPoint_x = spawn_x;
 	this->spawnPoint_y = spawn_y;
 	this->damage = damage;
 	this->speed = speed;
 	this->duration = duration;
+	this->rotation = rotation;
 
 	position_x = spawnPoint_x;
 	position_y = spawnPoint_y;
@@ -21,6 +22,7 @@ double BulletBasicClass::GetPosition_y() { return position_y; }
 
 BulletBasicClass::~BulletBasicClass() {}
 
-void BulletBasicClass::Move(int rotation) {}
+void BulletBasicClass::Move() {}
 
 double BulletBasicClass::GetDuration() { return duration; }
+double BulletBasicClass::GetRotation() { return rotation; }

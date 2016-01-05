@@ -2,10 +2,12 @@
 
 #include <iostream>
 
+bool Player::MainCannonOneShooted = false;
+
 Player::Player(int size_x, int size_y)
 	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
 	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5),
-	level(1), x(100), y(100), rotation(0), isAlive(true)
+	level(1), x(100), y(100), rotation(0), shootingSpeed(3), timeToShoot(0), isAlive(true)
 {
 				// Player position in the game world
 				// rotation which is needed to rotate the ship and to calculate the vector of thrust
@@ -40,6 +42,10 @@ double Player::Get_ActualSpeed_x() {return actualSpeed_x;}
 
 double Player::Get_ActualSpeed_y() {return actualSpeed_y;}
 
+double Player::Get_ShootingSpeed() {return shootingSpeed;}
+
+double Player::Get_TimeToShoot() {return timeToShoot;}
+
 bool Player::Get_IfAlive() { return isAlive; }
 
 void Player::GainHealth(int amount) {if (actualHealth < maxHealth) actualHealth += amount;}
@@ -65,6 +71,12 @@ void Player::LooseEnergy(int amount) {if (actualEnergy > 0) actualEnergy -= amou
 void Player::LooseCapacity(int amount) {if (actualCapacity > 0) actualCapacity -= amount;}
 
 void Player::Die() { isAlive = false; }
+
+void Player::SetTimeToShoot(double amount) // this is our counter for delaying shots
+{ 
+	if (timeToShoot <= shootingSpeed) timeToShoot += amount;
+	else timeToShoot = 0;
+}
 
 void Player::Accelerate()
 {
@@ -157,7 +169,17 @@ void Player::Move()
 
 void Player::ShootFromMainCannons()
 {
-	PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, 1, 15, 5); // to tez sie wykonuje
-	cout << rotatedSpawnPoint1_x << endl;
-	BulletController::InsertNewBullet(bullet);
+	if (MainCannonOneShooted == false) // we shoot one time from the first cannon and then from another one
+	{
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, 1, 10, 5, rotation); // to tez sie wykonuje
+		MainCannonOneShooted = true;
+		BulletController::InsertNewBullet(bullet);
+	}
+	else
+	{
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, 1, 10, 5, rotation); // to tez sie wykonuje
+		MainCannonOneShooted = false;
+		BulletController::InsertNewBullet(bullet);
+	}
+	
 }

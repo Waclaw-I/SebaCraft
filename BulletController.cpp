@@ -15,7 +15,7 @@ void BulletController::MoveBullets()
 {
 	for (int i = 0; i < ArrayOfBullets.size(); i++)
 	{
-		ArrayOfBullets[i]->Move(90);
+		ArrayOfBullets[i]->Move();
 		if (ArrayOfBullets[i]->GetDuration() < 0)
 		{
 			delete ArrayOfBullets[i];

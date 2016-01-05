@@ -32,7 +32,11 @@ private:
 	double rotatedSpawnPoint2_x;
 	double rotatedSpawnPoint2_y;
 
+	double shootingSpeed;
+	double timeToShoot;
+
 	bool isAlive;
+	static bool MainCannonOneShooted;
 
 	int maxHealth;		// maximal amount at the moment. You can raise it by upgrades
 	int maxEnergy;
@@ -75,9 +79,14 @@ public:
 	double Get_ActualSpeed_y();
 	bool Get_IfAlive();
 
+	void SetTimeToShoot(double);
+
 
 	void RotateLeft();
 	void RotateRight();
+
+	double Get_ShootingSpeed();
+	double Get_TimeToShoot();
 
 	void Move();
 
