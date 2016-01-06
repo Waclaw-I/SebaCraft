@@ -12,6 +12,7 @@
 
 #include "EnemyShip.h"
 #include "SmallFighter.h"
+#include "Medivac.h"
 
 #include <conio.h>
 #include <iostream>
@@ -27,9 +28,11 @@ int main()
 	SpriteHolder SebamusSprite(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
 
 	Player Sebamus(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
-	SmallFighter * Statek = new SmallFighter(300, 300, 0.1, 100, 1.5, 1, 1, 90);
+	SmallFighter * Statek = new SmallFighter(300, 300, 0.2, 100, 2.5, 1, 1, 90);
+	Medivac * Statek1 = new Medivac(400, 400, 0.15, 100, 2, 1, 1, 90);
 
 	EnemyController::InsertNewEnemyShip(Statek);
+	EnemyController::InsertNewEnemyShip(Statek1);
 
 	
 
@@ -60,10 +63,17 @@ int main()
 			SebamusSprite.MySprite.setPosition(static_cast<float>(Sebamus.Get_x_Position()), static_cast<float>(Sebamus.Get_y_Position()));
 			SebamusSprite.MySprite.setRotation(Sebamus.Get_Rotation());
 
-			EnemyController::MoveEnemyShips(Sebamus); // working
+			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
+			{
+				EnemyController::ArrayOfEnemies[0]->FollowPlayer(Sebamus); // working
+				EnemyController::ArrayOfEnemies[1]->FollowAlly(Statek);
+				EnemyController::ArrayOfEnemies[i]->Move();
+			}
 
 			Statek->Get_MyGraph()->MySprite.setPosition(static_cast<float>(Statek->Get_x_Position()), static_cast<float>(Statek->Get_y_Position()));
 			Statek->Get_MyGraph()->MySprite.setRotation(Statek->Get_Rotation());
+			Statek1->Get_MyGraph()->MySprite.setPosition(static_cast<float>(Statek1->Get_x_Position()), static_cast<float>(Statek1->Get_y_Position()));
+			Statek1->Get_MyGraph()->MySprite.setRotation(Statek1->Get_Rotation());
 			for (int i = 0; i < BulletController::ArrayOfBullets.size(); i++)
 			{
 				BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite.setPosition(static_cast<float>(BulletController::ArrayOfBullets[i]->GetPosition_x()),
@@ -79,7 +89,10 @@ int main()
 
 			MainWindow.clear();
 			MainWindow.draw(SebamusSprite.MySprite);
-			MainWindow.draw(Statek->Get_MyGraph()->MySprite);
+			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
+			{
+				MainWindow.draw(EnemyController::ArrayOfEnemies[i]->Get_MyGraph()->MySprite);
+			}
 			for (int i = 0; i < BulletController::ArrayOfBullets.size(); i++)
 			{
 				MainWindow.draw(BulletController::ArrayOfBullets[i]->GetBulletGraph()->MySprite); // this ll land at DisplayController

@@ -2,6 +2,7 @@
 #include "Player.h"
 
 #include <SFML/Graphics.hpp>
+#include <math.h>
 
 class EnemyShip // this is our parent class of the enemy. Everything what every enemy should have.
 {
@@ -31,6 +32,8 @@ protected:
 	double rotation;
 	double rotationSpeed;
 
+	double accelerationDistance; // depends on type of ship. SmallFighters are supposed to get close
+
 	bool isAlive;
 
 	SpriteHolder * MyGraph; // we need that just to be able to override our Get_MyGraph method
@@ -53,6 +56,7 @@ public:
 
 	void LooseHealth(int);
 	void Accelerate();
+	void Break();
 	void RotateLeft();
 	void RotateRight();
 	void Die();
@@ -61,6 +65,6 @@ public:
 	virtual SpriteHolder * Get_MyGraph();
 
 	void FollowPlayer(Player);
-	void FollowAlly(EnemyShip);
+	void FollowAlly(EnemyShip *);
 
 };

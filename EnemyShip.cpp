@@ -1,8 +1,8 @@
 #include "EnemyShip.h"
 #include "Player.h"
 
-//using namespace std;
-//#include <iostream>
+using namespace std;
+#include <iostream>
 
 
 double EnemyShip::Get_x_Position() { return x; }
@@ -72,6 +72,30 @@ void EnemyShip::Accelerate()
 		}
 }
 
+void EnemyShip::Break()
+{
+	if (actualSpeed_x > 0)
+	{
+		actualSpeed_x -= acceleration;
+		if (actualSpeed_x < 0.001) actualSpeed_x = 0;
+	}
+	if (actualSpeed_y > 0)
+	{
+		actualSpeed_y -= acceleration;
+		if (actualSpeed_y < 0.001) actualSpeed_y = 0;
+	}
+	if (actualSpeed_x < 0)
+	{
+		actualSpeed_x += acceleration;
+		if (actualSpeed_x > -0.001) actualSpeed_x = 0;
+	}
+	if (actualSpeed_y < 0)
+	{
+		actualSpeed_y += acceleration;
+		if (actualSpeed_y > -0.001) actualSpeed_y = 0;
+	}
+}
+
 void EnemyShip::Move()
 {
 	x += actualSpeed_x;
@@ -98,12 +122,22 @@ void EnemyShip::FollowPlayer(Player player)
 		direction += 180;
 
 		rotation = direction;
-
-
-
 	}
+	double distance = sqrt(pow(this->x - player.Get_x_Position(), 2) + pow(this->y - player.Get_y_Position(), 2));
+	
+	if (distance > accelerationDistance) Accelerate();
+}
 
-	Accelerate();
+void EnemyShip::FollowAlly(EnemyShip * ally)
+{
+	if (ally->Get_IsAlive() == true)
+	{
+		double direction = atan2(this->y - ally->Get_y_Position(), this->x - ally->Get_x_Position()) * (180 / 3.14);
+		direction += 180;
 
+		rotation = direction;
+	}
+	double distance = sqrt(pow(this->x - ally->Get_x_Position(), 2) + pow(this->y - ally->Get_y_Position(), 2));
 
+	if (distance > accelerationDistance) Accelerate();
 }

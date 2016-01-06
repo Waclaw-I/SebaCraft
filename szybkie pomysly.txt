@@ -19,6 +19,10 @@ Klasa display posiada metode do wywolywania metod Draw(), ktora jest przeciazana
 
 TODOS:
 
+Kolizja pociskow gracza z przeciwnikami. Strzelanie dla przeciwnikow.
+
+
+
 okreslanie wielkosci logicznego obiektu (wziete pod uwage skalowanie grafiki)
 
 zmniejszyc moc hamowania
@@ -26,9 +30,6 @@ zmniejszyc moc hamowania
 Najpierw public, pozniej private
 
 Pobierac ze spriteow wielkosci obiektow potrzebne do kolizji oraz spawnpoint dla dzialek
-
-W DisplayControllerze stworzyc liste obiektow graficznych, ktore beda polaczone kluczem z obiektami logicznymi
-Obiekt logiczny zostaje zniszczony - przepinamy wskaznik.
 
 Ograniczenie predkosci obrotu przeciwnikow
 

@@ -8,6 +8,8 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_
 
 	this->size_x = MyGraph->GetSize_x();
 	this->size_x = MyGraph->GetSize_y();
+
+	accelerationDistance = 150; // our SmallFighter is supposed to sit on our back! He wont slow down until he gets this close to the Player
 }
 
 SpriteHolder * SmallFighter::Get_MyGraph() { return MyGraph; }
