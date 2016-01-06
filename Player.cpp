@@ -7,7 +7,7 @@ bool Player::MainCannonOneShooted = false;
 Player::Player(int size_x, int size_y)
 	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
 	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5),
-	level(1), x(100), y(100), rotation(0), shootingSpeed(3), timeToShoot(0), isAlive(true)
+	level(1), x(100), y(100), rotation(0), shootingSpeed(0.12), timeToShoot(0), isAlive(true) // shooting in seconds
 {
 				// Player position in the game world
 				// rotation which is needed to rotate the ship and to calculate the vector of thrust
@@ -171,13 +171,13 @@ void Player::ShootFromMainCannons()
 {
 	if (MainCannonOneShooted == false) // we shoot one time from the first cannon and then from another one
 	{
-		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, 1, 10, 5, rotation); // to tez sie wykonuje
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, 1, 10, 2, rotation); // to tez sie wykonuje
 		MainCannonOneShooted = true;
 		BulletController::InsertNewBullet(bullet);
 	}
 	else
 	{
-		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, 1, 10, 5, rotation); // to tez sie wykonuje
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, 1, 10, 2, rotation); // to tez sie wykonuje
 		MainCannonOneShooted = false;
 		BulletController::InsertNewBullet(bullet);
 	}

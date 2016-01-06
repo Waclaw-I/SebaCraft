@@ -29,6 +29,7 @@ EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health
 	fireRate(fire_rate), rotation(rotation)
 {
 	tag = "Enemy";
+	isAlive = true;
 
 	
 

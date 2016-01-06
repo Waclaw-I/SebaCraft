@@ -29,7 +29,7 @@ int main()
 	Player Sebamus(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
 	SmallFighter * Statek = new SmallFighter(300, 300, 0.1, 100, 1.5, 1, 1, 90);
 
-	//EnemyController::InsertNewEnemyShip(Statek);
+	EnemyController::InsertNewEnemyShip(Statek);
 
 	
 
@@ -40,7 +40,7 @@ int main()
 
 	Clock timer;
 	float accumulator = 0;
-	float timeStep = 0.015f;
+	float timeStep = 0.0166f; // 60FPS
 
 	
 	while (MainWindow.isOpen())
@@ -60,10 +60,7 @@ int main()
 			SebamusSprite.MySprite.setPosition(static_cast<float>(Sebamus.Get_x_Position()), static_cast<float>(Sebamus.Get_y_Position()));
 			SebamusSprite.MySprite.setRotation(Sebamus.Get_Rotation());
 
-			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
-			{
-
-			}
+			EnemyController::MoveEnemyShips(Sebamus); // working
 
 			Statek->Get_MyGraph()->MySprite.setPosition(static_cast<float>(Statek->Get_x_Position()), static_cast<float>(Statek->Get_y_Position()));
 			Statek->Get_MyGraph()->MySprite.setRotation(Statek->Get_Rotation());
@@ -79,8 +76,6 @@ int main()
 			PlayerController::Moving(Sebamus); // controls movements of the player
 			PlayerController::Shooting(Sebamus);
 			BulletController::MoveBullets();
-			Statek->FollowPlayer(Sebamus);
-			Statek->Move();
 
 			MainWindow.clear();
 			MainWindow.draw(SebamusSprite.MySprite);
@@ -95,6 +90,7 @@ int main()
 
 			MainWindow.display();
 			accumulator -= timeStep;
+
 		}
 	}
 	return 0;

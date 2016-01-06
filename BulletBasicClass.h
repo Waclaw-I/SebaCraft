@@ -12,6 +12,7 @@ public:
 
 	virtual void Move();
 	virtual double GetDuration();
+	void DecreaseDuration(double);
 
 	virtual SpriteHolder * GetBulletGraph() { return BulletGraph; } // this method ll be overrided
 

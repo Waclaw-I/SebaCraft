@@ -26,3 +26,5 @@ void BulletBasicClass::Move() {}
 
 double BulletBasicClass::GetDuration() { return duration; }
 double BulletBasicClass::GetRotation() { return rotation; }
+
+void BulletBasicClass::DecreaseDuration(double amount) { duration -= amount; }

@@ -32,6 +32,6 @@ void PlayerController::Shooting(Player & Sebamus)
 	{
 		Sebamus.ShootFromMainCannons();
 	}
-	Sebamus.SetTimeToShoot(0.33);
+	Sebamus.SetTimeToShoot(0.0166);
 
 }
