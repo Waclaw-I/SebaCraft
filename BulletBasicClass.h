@@ -12,6 +12,7 @@ public:
 
 	virtual void Move();
 	virtual double GetDuration();
+	virtual bool Collision();
 	void DecreaseDuration(double);
 
 	virtual SpriteHolder * GetBulletGraph() { return BulletGraph; } // this method ll be overrided
@@ -19,6 +20,7 @@ public:
 	double GetPosition_x();
 	double GetPosition_y();
 	double GetRotation();
+	int GetQuality();
 
 protected:
 
@@ -32,6 +34,8 @@ protected:
 	double speed;
 	double duration;
 	double rotation;
+
+	int quality; // if lower than 2o (%) our bullet will miss the target
 
 	SpriteHolder * BulletGraph; // we need this just to complete the definition of GetBulletGraph method
 

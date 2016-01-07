@@ -6,7 +6,7 @@ class SmallFighter : public EnemyShip
 {
 
 public:
-	SmallFighter(double, double, double, double, double, int, double, double);
+	SmallFighter(double, double, double, double, double, int, double, double, double);
 	SpriteHolder * Get_MyGraph() override;
 
 private:

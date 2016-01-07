@@ -27,9 +27,9 @@ int main()
 	// actual objects are created here
 	SpriteHolder SebamusSprite(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
 
-	Player Sebamus(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
-	SmallFighter * Statek = new SmallFighter(300, 300, 0.2, 100, 2.5, 1, 1, 90);
-	Medivac * Statek1 = new Medivac(400, 400, 0.15, 100, 2, 1, 1, 90);
+	Player * Sebamus = new Player(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
+	SmallFighter * Statek = new SmallFighter(300, 300, 0.2, 100, 2.5, 1, 1, 90, 1);
+	Medivac * Statek1 = new Medivac(400, 400, 0.15, 100, 2, 1, 1, 90, 1);
 
 	EnemyController::InsertNewEnemyShip(Statek);
 	EnemyController::InsertNewEnemyShip(Statek1);
@@ -38,7 +38,7 @@ int main()
 
 	
 
-	RenderWindow MainWindow(VideoMode(800, 600, 32), "SebaCraft"); // main window. Need to think about the proper size
+	RenderWindow MainWindow(VideoMode(800, 600, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window. Need to think about the proper size
 
 
 	Clock timer;
@@ -60,15 +60,10 @@ int main()
 				if (zdarzenie.type == Event::Closed) MainWindow.close();
 			}
 
-			SebamusSprite.MySprite.setPosition(static_cast<float>(Sebamus.Get_x_Position()), static_cast<float>(Sebamus.Get_y_Position()));
-			SebamusSprite.MySprite.setRotation(Sebamus.Get_Rotation());
+			SebamusSprite.MySprite.setPosition(static_cast<float>(Sebamus->Get_x_Position()), static_cast<float>(Sebamus->Get_y_Position()));
+			SebamusSprite.MySprite.setRotation(Sebamus->Get_Rotation());
 
-			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
-			{
-				EnemyController::ArrayOfEnemies[0]->FollowPlayer(Sebamus); // working
-				EnemyController::ArrayOfEnemies[1]->FollowAlly(Statek);
-				EnemyController::ArrayOfEnemies[i]->Move();
-			}
+			EnemyController::MoveEnemyShips(Sebamus);
 
 			Statek->Get_MyGraph()->MySprite.setPosition(static_cast<float>(Statek->Get_x_Position()), static_cast<float>(Statek->Get_y_Position()));
 			Statek->Get_MyGraph()->MySprite.setRotation(Statek->Get_Rotation());
@@ -83,8 +78,8 @@ int main()
 			}
 
 
-			PlayerController::Moving(Sebamus); // controls movements of the player
-			PlayerController::Shooting(Sebamus);
+			PlayerController::Moving(*Sebamus); // controls movements of the player
+			PlayerController::Shooting(*Sebamus);
 			BulletController::MoveBullets();
 
 			MainWindow.clear();

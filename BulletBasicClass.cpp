@@ -1,6 +1,7 @@
 #include "BulletBasicClass.h"
 
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -15,14 +16,20 @@ BulletBasicClass::BulletBasicClass(double spawn_x, double spawn_y, int damage, d
 
 	position_x = spawnPoint_x;
 	position_y = spawnPoint_y;
+
+	quality = rand() % 100;
 }
 
 double BulletBasicClass::GetPosition_x() { return position_x; }
 double BulletBasicClass::GetPosition_y() { return position_y; }
+int BulletBasicClass::GetQuality() { return quality; }
+
+
 
 BulletBasicClass::~BulletBasicClass() {}
 
 void BulletBasicClass::Move() {}
+bool BulletBasicClass::Collision() { return false; }
 
 double BulletBasicClass::GetDuration() { return duration; }
 double BulletBasicClass::GetRotation() { return rotation; }

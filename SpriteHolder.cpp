@@ -8,11 +8,11 @@
 using namespace sf;
 
 
-SpriteHolder::SpriteHolder(TextureLoader & Texture, double size_x, double size_y, double rotation, double scale = 1 )
+SpriteHolder::SpriteHolder(TextureLoader & Texture, double size_x, double size_y, double rotation, double scale)
 {
 	MySprite.setTexture(Texture.MyTexture);
-	this->size_x = size_x*scale;
-	this->size_y = size_y*scale;
+	this->size_x = size_x*scale*0.8; // magic number for cosmetic purpose only 
+	this->size_y = size_y*scale*0.8;
 	this->rotation = rotation;
 	this->scale = scale;
 

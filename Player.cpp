@@ -171,13 +171,13 @@ void Player::ShootFromMainCannons()
 {
 	if (MainCannonOneShooted == false) // we shoot one time from the first cannon and then from another one
 	{
-		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, 1, 10, 2, rotation); // to tez sie wykonuje
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, 1, 10, 2, rotation);
 		MainCannonOneShooted = true;
 		BulletController::InsertNewBullet(bullet);
 	}
 	else
 	{
-		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, 1, 10, 2, rotation); // to tez sie wykonuje
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, 1, 10, 2, rotation);
 		MainCannonOneShooted = false;
 		BulletController::InsertNewBullet(bullet);
 	}

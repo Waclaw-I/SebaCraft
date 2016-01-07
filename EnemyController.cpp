@@ -11,7 +11,7 @@ void EnemyController::InsertNewEnemyShip(EnemyShip * enemy)
 	ArrayOfEnemies.push_back(enemy);
 }
 
-void EnemyController::MoveEnemyShips(Player & player)
+void EnemyController::MoveEnemyShips(Player * player)
 {
 	for (int i = 0; i < ArrayOfEnemies.size(); i++)
 	{
@@ -19,6 +19,7 @@ void EnemyController::MoveEnemyShips(Player & player)
 		ArrayOfEnemies[i]->Move();
 		if (ArrayOfEnemies[i]->Get_IsAlive() == false)
 		{
+			delete ArrayOfEnemies[i];
 			ArrayOfEnemies.erase(ArrayOfEnemies.begin() + i);
 		}
 		

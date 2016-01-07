@@ -4,34 +4,12 @@
 using namespace std;
 #include <iostream>
 
-
-double EnemyShip::Get_x_Position() { return x; }
-
-double EnemyShip::Get_y_Position() { return y; }
-
-int EnemyShip::GetSize_x() { return x; }
-int EnemyShip::GetSize_y() { return y; }
-
-double EnemyShip::Get_Rotation() { return rotation; }
-
-double EnemyShip::Get_ActualSpeed_x() { return actualSpeed_x; }
-
-double EnemyShip::Get_ActualSpeed_y() { return actualSpeed_y; }
-
-bool EnemyShip::Get_IsAlive(){ return isAlive; }
-
-void EnemyShip::LooseHealth(int amount) { actualHealth -= amount; }
-
-SpriteHolder * EnemyShip::Get_MyGraph() { return MyGraph; }
-
 EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health, double m_speed, int att_pow, double fire_rate, double rotation) :
 	spawn_x(spawn_x), spawn_y(spawn_y), acceleration(acc), maxHealth(m_health), maxSpeed(m_speed), attackPower(att_pow),
 	fireRate(fire_rate), rotation(rotation)
 {
 	tag = "Enemy";
 	isAlive = true;
-
-	
 
 	actualHealth = maxHealth;
 
@@ -42,11 +20,35 @@ EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health
 
 	x = spawn_x;
 	y = spawn_y;
-
-
 }
 
+EnemyShip::~EnemyShip() { cout << "obiekt typu enemyship zostal zniszczony" << endl; }
+
+
+double EnemyShip::Get_x_Position() { return x; }
+
+double EnemyShip::Get_y_Position() { return y; }
+
+int EnemyShip::GetSize_x() { return size_x; }
+int EnemyShip::GetSize_y() { return size_y; }
+
+double EnemyShip::Get_Rotation() { return rotation; }
+
+double EnemyShip::Get_ActualSpeed_x() { return actualSpeed_x; }
+
+double EnemyShip::Get_ActualSpeed_y() { return actualSpeed_y; }
+
+bool EnemyShip::Get_IsAlive(){ return isAlive; }
+
+SpriteHolder * EnemyShip::Get_MyGraph() { return MyGraph; }
+
 void EnemyShip::Die() { isAlive = false; }
+
+void EnemyShip::LooseHealth(int amount) 
+{ 
+	actualHealth -= amount;
+	if (actualHealth <= 0) Die();
+}
 
 void EnemyShip::Accelerate()
 {
@@ -114,16 +116,16 @@ void EnemyShip::RotateRight()
 	rotation += rotationSpeed;
 }
 
-void EnemyShip::FollowPlayer(Player player)
+void EnemyShip::FollowPlayer(Player * player)
 {
-	if (player.Get_IfAlive() == true)
+	if (player->Get_IfAlive() == true)
 	{
-		double direction = atan2(this->y - player.Get_y_Position(), this->x - player.Get_x_Position()) * (180/3.14);
+		double direction = atan2(this->y - player->Get_y_Position(), this->x - player->Get_x_Position()) * (180/3.14);
 		direction += 180;
 
 		rotation = direction;
 	}
-	double distance = sqrt(pow(this->x - player.Get_x_Position(), 2) + pow(this->y - player.Get_y_Position(), 2));
+	double distance = sqrt(pow(this->x - player->Get_x_Position(), 2) + pow(this->y - player->Get_y_Position(), 2));
 	
 	if (distance > accelerationDistance) Accelerate();
 }

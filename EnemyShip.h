@@ -4,8 +4,42 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
 
+class Player;
+
+
+
 class EnemyShip // this is our parent class of the enemy. Everything what every enemy should have.
 {
+
+public:
+
+	EnemyShip(double, double, double, double, double, int, double, double); // spawn_x, spawn_y, acc, m_health, m_speed, att_pow, firerate, rotation
+	virtual ~EnemyShip();
+
+	double Get_x_Position();
+	double Get_y_Position();
+	int GetSize_x();
+	int GetSize_y();
+	double Get_Rotation();
+	double Get_ActualSpeed_x();
+	double Get_ActualSpeed_y();
+
+	bool Get_IsAlive();
+
+
+	void LooseHealth(int);
+	void Accelerate();
+	void Break();
+	void RotateLeft();
+	void RotateRight();
+	void Die();
+	void Move();
+
+	virtual SpriteHolder * Get_MyGraph();
+
+	void FollowPlayer(Player *);
+	void FollowAlly(EnemyShip *);
+
 protected:
 
 	string tag;
@@ -39,32 +73,6 @@ protected:
 	SpriteHolder * MyGraph; // we need that just to be able to override our Get_MyGraph method
 
 
-public:
 
-	EnemyShip(double, double, double, double, double, int, double, double); // spawn_x, spawn_y, acc, m_health, m_speed, att_pow, firerate, rotation
-
-	double Get_x_Position();
-	double Get_y_Position();
-	int GetSize_x();
-	int GetSize_y();
-	double Get_Rotation();
-	double Get_ActualSpeed_x();
-	double Get_ActualSpeed_y();
-
-	bool Get_IsAlive();
-
-
-	void LooseHealth(int);
-	void Accelerate();
-	void Break();
-	void RotateLeft();
-	void RotateRight();
-	void Die();
-	void Move();
-
-	virtual SpriteHolder * Get_MyGraph();
-
-	void FollowPlayer(Player);
-	void FollowAlly(EnemyShip *);
 
 };

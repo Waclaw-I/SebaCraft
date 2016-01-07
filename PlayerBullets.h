@@ -2,6 +2,7 @@
 #include "BulletBasicClass.h"
 #include "SpriteHolder.h" // we need that to upload the graphic onto our bullet
 #include "LoadController.h"
+#include "EnemyController.h"
 #include "Player.h"
 #include <string>
 
@@ -13,6 +14,7 @@ public:
 
 	PlayerBullets(double, double, int, double, double, double);
 	virtual void Move() override;
+	virtual bool Collision() override;
 
 	~PlayerBullets();
 
@@ -21,6 +23,8 @@ public:
 private:
 
 	SpriteHolder * BulletGraph;
+
+	int qualityBoost;
 
 	string tag;
 };
