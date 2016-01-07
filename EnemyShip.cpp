@@ -38,6 +38,8 @@ double EnemyShip::Get_ActualSpeed_x() { return actualSpeed_x; }
 
 double EnemyShip::Get_ActualSpeed_y() { return actualSpeed_y; }
 
+double EnemyShip::GetActualHealth() { return actualHealth; }
+
 bool EnemyShip::Get_IsAlive(){ return isAlive; }
 
 SpriteHolder * EnemyShip::Get_MyGraph() { return MyGraph; }

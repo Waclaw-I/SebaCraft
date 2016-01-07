@@ -18,11 +18,13 @@ public:
 
 	double Get_x_Position();
 	double Get_y_Position();
+	
 	int GetSize_x();
 	int GetSize_y();
 	double Get_Rotation();
 	double Get_ActualSpeed_x();
 	double Get_ActualSpeed_y();
+	double GetActualHealth();
 
 	bool Get_IsAlive();
 
@@ -47,7 +49,7 @@ protected:
 	double spawn_x;
 	double spawn_y;
 
-	int actualHealth;
+	double actualHealth;
 	double actualSpeed_x;
 	double actualSpeed_y;
 	double acceleration;

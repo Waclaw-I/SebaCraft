@@ -11,6 +11,7 @@ public:
 
 	static TextureLoader ShipTexturesArray[3]; // Table with our textures, where 0 is for player. There is need of texture position in table knownledge
 	static TextureLoader BulletTextureArray[1];
+	static TextureLoader BackgroundTextureArray[2];
 
 
 	static void LoadTextures();

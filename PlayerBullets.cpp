@@ -15,6 +15,11 @@ PlayerBullets::PlayerBullets(double spawn_x, double spawn_y, int damage, double 
 	quality += qualityBoost;
 }
 
+PlayerBullets::~PlayerBullets()
+{
+	delete BulletGraph; // we need to free memory occupied by the graphic of the bullet
+}
+
 void PlayerBullets::Move() // temp
 {
 	if ((rotation >= 0) && (rotation < 90))					// +/+ quarter
@@ -69,7 +74,3 @@ SpriteHolder * PlayerBullets::GetBulletGraph()
 	
 }
 
-PlayerBullets::~PlayerBullets()
-{
-	delete BulletGraph; // we need to free memory occupied by the graphic of the bullet
-}

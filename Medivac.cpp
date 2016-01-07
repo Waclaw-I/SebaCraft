@@ -1,5 +1,8 @@
 #include "Medivac.h"
 
+#include <iostream>
+using namespace std;
+
 
 Medivac::Medivac(double spawn_x, double spawn_y, double acc, double m_health, double m_speed, int att_pow, double fire_rate, double rotation, double scale = 1) :
 	EnemyShip(spawn_x, spawn_y, acc, m_health, m_speed, att_pow, fire_rate, rotation)
@@ -11,6 +14,13 @@ Medivac::Medivac(double spawn_x, double spawn_y, double acc, double m_health, do
 	this->size_y = MyGraph->GetSize_y();
 
 	accelerationDistance = 200; // Medivac will try to hide behind mainforce and heal his allies
+}
+
+Medivac::~Medivac()
+{
+	cout << "Object of type Medivac has been destroyed" << endl;
+
+	delete MyGraph;
 }
 
 SpriteHolder * Medivac::Get_MyGraph() { return MyGraph; }

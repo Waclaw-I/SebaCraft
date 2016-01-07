@@ -34,6 +34,7 @@ private:
 
 	double shootingSpeed;
 	double timeToShoot;
+	double damage;
 
 	bool isAlive;
 	static bool MainCannonOneShooted;
