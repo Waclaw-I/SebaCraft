@@ -34,6 +34,8 @@ int EnemyShip::GetSize_y() { return size_y; }
 
 double EnemyShip::Get_Rotation() { return rotation; }
 
+double EnemyShip::Get_RotationSpeed() { return rotationSpeed; }
+
 double EnemyShip::Get_ActualSpeed_x() { return actualSpeed_x; }
 
 double EnemyShip::Get_ActualSpeed_y() { return actualSpeed_y; }

@@ -17,7 +17,7 @@ void EnemyController::MoveEnemyShips(Player * player)
 	{
 		ArrayOfEnemies[i]->FollowPlayer(player);
 		ArrayOfEnemies[i]->Move();
-		cout << ArrayOfEnemies[0]->GetActualHealth() << endl;
+
 		if (ArrayOfEnemies[i]->Get_IsAlive() == false)
 		{
 			delete ArrayOfEnemies[i];

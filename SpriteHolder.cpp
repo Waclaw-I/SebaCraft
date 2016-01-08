@@ -11,23 +11,30 @@ using namespace sf;
 SpriteHolder::SpriteHolder(TextureLoader & Texture, double size_x, double size_y, double rotation, double scale)
 {
 	MySprite.setTexture(Texture.MyTexture);
-	this->size_x = size_x*scale*0.8; // magic number for cosmetic purpose only 
-	this->size_y = size_y*scale*0.8;
+	this->hitboxSize_x = size_x*scale*0.8; // magic number for cosmetic purpose only 
+	this->hitboxSize_y = size_y*scale*0.8;
+	this->graphSize_x = size_x*scale;
+	this->graphSize_y = size_y*scale;
 	this->rotation = rotation;
 	this->scale = scale;
 
 
 
-	this->x_center = this->size_x / 2;
-	this->y_center = this->size_y / 2;
+	this->x_center = (this->graphSize_x / 2);
+	this->y_center = (this->graphSize_y / 2);
 
-	MySprite.setOrigin(this->x_center, this->y_center);
 	MySprite.scale(scale, scale);
+	MySprite.setOrigin(size_x/2, size_y/2);
+
 }
 
-double SpriteHolder::GetSize_x() { return size_x; }
+double SpriteHolder::Get_hitboxSize_x() { return hitboxSize_x; }
 
-double SpriteHolder::GetSize_y() { return size_y; }
+double SpriteHolder::Get_hitboxSize_y() { return hitboxSize_y; }
+
+double SpriteHolder::Get_graphSize_x() { return graphSize_x; }
+
+double SpriteHolder::Get_graphSize_y() { return graphSize_y; }
 
 double SpriteHolder::Get_rotation() { return rotation; }
 

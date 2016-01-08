@@ -1,10 +1,3 @@
-metoda Shoot(); - Tworzy obiekt Shot/Shell, który dziedziczy po klasie Player aktualna predkosc, kierunek
-	          w jakim jest obrocony i sile strzalu.
-		  Dodatkowo zwiekszamy mu predkosc. Obiekt Shot/Shell posiada metode InflictDamage()
-		  ktora zadaje obrazenia, jesli wspolrzedne pocisku pokrywaja sie ze wspolrzednymi przeciwnika
-		  Ilosc obrazen warunkowana jest przed dmg klasy Player.
-
-
 Wiezyczka jako osobny obiekt, ktorego pozycja jest stala wzgledem Playera. Mozna przepisywac pozycje Player.
 Rozwiazac problem z rotacja wiezyczki. Jej rotacja musi byc niezalezna od rotacji gracza. Wiezyczka obraca sie
 w kierunku kursora. (bêdzie trzeba przeprowadziæ obliczenia trygonometryczne).
@@ -12,7 +5,6 @@ w kierunku kursora. (bêdzie trzeba przeprowadziæ obliczenia trygonometryczne).
 Do stworzenia klasa Display, ktora wyswietla wszystkie sprite'y na ekran. Dostaje tak¿e logikê, ktora jest
 wczesniej liczona indywidualnie przez obiekty (np draw(Player), player_x, player_y, player_rotation);
 
-Stworzyc klase przechwytujaca input i przekazujaca go do klasy wykonujacej logike statku
 
 Klasa display posiada metode do wywolywania metod Draw(), ktora jest przeciazana dla wszystkich obiektow
 (wywolywanie raz, dla ca³ej tablicy np przeciwnikow)
@@ -29,9 +21,7 @@ zmniejszyc moc hamowania
 
 Najpierw public, pozniej private
 
-Pobierac ze spriteow wielkosci obiektow potrzebne do kolizji oraz spawnpoint dla dzialek
 
 Ograniczenie predkosci obrotu przeciwnikow
 
-skala statkow dziala do pewnego poziomu (dla 3 juz sie cos pierdoli)
 

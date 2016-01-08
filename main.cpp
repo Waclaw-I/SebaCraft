@@ -10,9 +10,11 @@
 #include "BulletController.h"
 #include "EnemyController.h"
 
+
 #include "EnemyShip.h"
 #include "SmallFighter.h"
 #include "Medivac.h"
+#include "SpaceStation.h"
 
 #include <conio.h>
 #include <iostream>
@@ -33,16 +35,17 @@ int main()
 	Background1.MySprite.setPosition(0, 0);
 	Background2.MySprite.setPosition(550, 300);
 
-	Player * Sebamus = new Player(SebamusSprite.GetSize_x(), SebamusSprite.GetSize_y());	// our HERO and all his logics
+	Player * Sebamus = new Player(SebamusSprite.Get_graphSize_x(), SebamusSprite.Get_graphSize_y());	// our HERO and all his logics
 	SmallFighter * Statek = new SmallFighter(300, 300, 0.2, 100, 2.5, 1, 1, 90, 1);
 	Medivac * Statek1 = new Medivac(400, 400, 0.15, 100, 2, 1, 1, 90, 1);
+	SpaceStation * Station = new SpaceStation(0.1, 2);
 
 	EnemyController::InsertNewEnemyShip(Statek);
 	EnemyController::InsertNewEnemyShip(Statek1);
 
 	
 
-	RenderWindow MainWindow(VideoMode(800, 600, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window. Need to think about the proper size (doesn't matter when in Fullscreen mode)
+	RenderWindow MainWindow(VideoMode(1366, 768, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window. Need to think about the proper size (doesn't matter when in Fullscreen mode)
 
 
 
@@ -77,6 +80,7 @@ int main()
 			SebamusSprite.MySprite.setRotation(Sebamus->Get_Rotation());
 
 			Background1.MySprite.setPosition(Sebamus->Get_x_Position(), Sebamus->Get_y_Position());
+			Station->Get_MyGraph()->MySprite.rotate(Station->Get_RotationSpeed());
 
 			OurCamera.setCenter(Sebamus->Get_x_Position(), Sebamus->Get_y_Position()); // Camera
 			MainWindow.setView(OurCamera);
@@ -107,6 +111,7 @@ int main()
 			MainWindow.clear();
 			MainWindow.draw(Background1.MySprite);
 			MainWindow.draw(Background2.MySprite);
+			MainWindow.draw(Station->Get_MyGraph()->MySprite);
 			MainWindow.draw(SebamusSprite.MySprite);
 			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
 			{

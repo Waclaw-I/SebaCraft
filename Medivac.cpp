@@ -10,8 +10,8 @@ Medivac::Medivac(double spawn_x, double spawn_y, double acc, double m_health, do
 	MyGraph = new SpriteHolder(LoadController::ShipTexturesArray[1], LoadController::ShipTexturesArray[1].Get_x(), LoadController::ShipTexturesArray[1].Get_y(), rotation, scale);
 	MyGraph->MySprite.setPosition(spawn_x, spawn_y);
 
-	this->size_x = MyGraph->GetSize_x();
-	this->size_y = MyGraph->GetSize_y();
+	this->size_x = MyGraph->Get_hitboxSize_x();
+	this->size_y = MyGraph->Get_hitboxSize_y();
 
 	accelerationDistance = 200; // Medivac will try to hide behind mainforce and heal his allies
 }

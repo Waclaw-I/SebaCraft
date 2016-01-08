@@ -7,7 +7,7 @@ bool Player::MainCannonOneShooted = false;
 Player::Player(int size_x, int size_y) // I need to change the style of gathering this data
 	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
 	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5), damage(5),
-	level(1), x(100), y(100), rotation(0), shootingSpeed(0.12), timeToShoot(0), isAlive(true) // shooting in seconds
+	level(1), x(0), y(0), rotation(0), shootingSpeed(0.12), timeToShoot(0), isAlive(true) // shooting in seconds
 {
 				// Player position in the game world
 				// rotation which is needed to rotate the ship and to calculate the vector of thrust

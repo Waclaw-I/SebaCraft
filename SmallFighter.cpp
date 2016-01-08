@@ -9,8 +9,8 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_
 	MyGraph = new SpriteHolder(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), rotation, scale);
 	MyGraph->MySprite.setPosition(spawn_x, spawn_y);
 
-	this->size_x = MyGraph->GetSize_x();
-	this->size_y = MyGraph->GetSize_y();
+	this->size_x = MyGraph->Get_hitboxSize_x();
+	this->size_y = MyGraph->Get_hitboxSize_y();
 
 	accelerationDistance = 150; // our SmallFighter is supposed to sit on our back! He wont slow down until he gets this close to the Player
 }
