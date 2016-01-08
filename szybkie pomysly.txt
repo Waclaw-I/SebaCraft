@@ -19,9 +19,9 @@ Klasa display posiada metode do wywolywania metod Draw(), ktora jest przeciazana
 
 TODOS:
 
-Kolizja pociskow gracza z przeciwnikami. Strzelanie dla przeciwnikow.
+Strzelanie dla przeciwnikow.
 
-
+Dodanie wielkosci "do kolizji" i wielkosci "grafiki" zamiast jednego size
 
 okreslanie wielkosci logicznego obiektu (wziete pod uwage skalowanie grafiki)
 

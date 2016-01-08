@@ -18,8 +18,6 @@ Medivac::Medivac(double spawn_x, double spawn_y, double acc, double m_health, do
 
 Medivac::~Medivac()
 {
-	cout << "Object of type Medivac has been destroyed" << endl;
-
 	delete MyGraph;
 }
 

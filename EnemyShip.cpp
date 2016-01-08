@@ -22,7 +22,7 @@ EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health
 	y = spawn_y;
 }
 
-EnemyShip::~EnemyShip() { cout << "obiekt typu enemyship zostal zniszczony" << endl; }
+EnemyShip::~EnemyShip() { }
 
 
 double EnemyShip::Get_x_Position() { return x; }

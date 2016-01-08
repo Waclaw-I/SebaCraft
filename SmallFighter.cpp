@@ -17,8 +17,6 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_
 
 SmallFighter::~SmallFighter()
 {
-	cout << "Object of type SmallFighter has been destroyed" << endl;
-
 	delete MyGraph;
 }
 
