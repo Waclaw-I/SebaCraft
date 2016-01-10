@@ -9,6 +9,7 @@
 #include "LoadController.h"
 #include "BulletController.h"
 #include "EnemyController.h"
+#include "DisplayController.h"
 
 
 #include "EnemyShip.h"
@@ -45,7 +46,7 @@ int main()
 
 	
 
-	RenderWindow MainWindow(VideoMode(1366, 768, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window. Need to think about the proper size (doesn't matter when in Fullscreen mode)
+	RenderWindow MainWindow(VideoMode(1366, 768, 32), "SebaCraft", Style::Fullscreen); // main window. Need to think about the proper size (doesn't matter when in Fullscreen mode)
 
 
 
