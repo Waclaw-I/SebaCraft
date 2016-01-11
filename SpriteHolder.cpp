@@ -26,6 +26,8 @@ SpriteHolder::SpriteHolder(TextureLoader & Texture, double size_x, double size_y
 	MySprite.scale(scale, scale);
 	MySprite.setOrigin(size_x/2, size_y/2);
 
+	isLogicAlive = true;
+
 }
 
 double SpriteHolder::Get_hitboxSize_x() { return hitboxSize_x; }
@@ -43,3 +45,8 @@ double SpriteHolder::Get_size() { return scale; }
 double SpriteHolder::Get_x_center() { return x_center; }
 
 double SpriteHolder::Get_y_center() { return y_center; }
+
+bool SpriteHolder::Get_isLogicAlive() { return isLogicAlive; }
+
+void SpriteHolder::LogicIsDead() { isLogicAlive = false; }
+

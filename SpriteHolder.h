@@ -23,6 +23,8 @@ private: // informations about size, not position in the game world!
 	double x_center;
 	double y_center;
 
+	bool isLogicAlive;
+
 public:
 	Sprite MySprite;
 
@@ -34,6 +36,9 @@ public:
 	double Get_size();
 	double Get_x_center();
 	double Get_y_center();
+
+	bool Get_isLogicAlive();
+	void LogicIsDead();
 
 
 	

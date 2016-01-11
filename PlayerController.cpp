@@ -4,34 +4,34 @@ using namespace sf;
 using namespace std;
 
 
-void PlayerController::Moving(Player & Sebamus)
+void PlayerController::Moving(Player * player)
 {
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{
-		Sebamus.RotateLeft();
+		player->RotateLeft();
 	}
 	if (Keyboard::isKeyPressed(Keyboard::D))
 	{
-		Sebamus.RotateRight();
+		player->RotateRight();
 	}
 	if (Keyboard::isKeyPressed(Keyboard::W))
 	{
-		Sebamus.Accelerate();
+		player->Accelerate();
 	}
 	if (Keyboard::isKeyPressed(Keyboard::S))
 	{
-		Sebamus.Break();
+		player->Break();
 	}
 
-	Sebamus.Move();
+	player->Move();
 }
 
-void PlayerController::Shooting(Player & Sebamus)
+void PlayerController::Shooting(Player * player)
 {
-	if (Keyboard::isKeyPressed(Keyboard::Space) && (Sebamus.Get_TimeToShoot() >= Sebamus.Get_ShootingSpeed()))
+	if (Keyboard::isKeyPressed(Keyboard::Space) && (player->Get_TimeToShoot() >= player->Get_ShootingSpeed()))
 	{
-		Sebamus.ShootFromMainCannons();
+		player->ShootFromMainCannons();
 	}
-	Sebamus.SetTimeToShoot(0.0166);
+	player->SetTimeToShoot(0.0166);
 
 }

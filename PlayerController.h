@@ -9,6 +9,6 @@ class PlayerController
 
 public:
 
-	static void Moving(Player &);
-	static void Shooting(Player &);
+	static void Moving(Player *);
+	static void Shooting(Player *);
 };

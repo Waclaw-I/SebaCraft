@@ -1,5 +1,5 @@
 #pragma once
-
+#include "DisplayController.h"
 #include "EnemyShip.h"
 #include "Player.h"
 
@@ -12,6 +12,7 @@ public:
 
 	void static InsertNewEnemyShip(EnemyShip *);
 	void static MoveEnemyShips(Player *);
+	void static UpdateSpritesPosition(int);
 
 	static vector <EnemyShip *> ArrayOfEnemies;
 };

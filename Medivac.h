@@ -2,6 +2,8 @@
 #include "EnemyShip.h"
 
 
+class EnemyShip;
+
 class Medivac : public EnemyShip
 {
 public:

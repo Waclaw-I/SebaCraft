@@ -12,6 +12,7 @@ class BulletController
 public:
 	void static InsertNewBullet(BulletBasicClass *);
 	void static MoveBullets();
+	void static UpdateSpritesPosition(int);
 
 
 	static vector <BulletBasicClass *>  ArrayOfBullets;
