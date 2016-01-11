@@ -42,6 +42,11 @@ double EnemyShip::Get_ActualSpeed_y() { return actualSpeed_y; }
 
 double EnemyShip::GetActualHealth() { return actualHealth; }
 
+double EnemyShip::GetRotationInRadians()
+{
+	return (rotation * (3.14 / 180));
+}
+
 bool EnemyShip::Get_IsAlive(){ return isAlive; }
 
 SpriteHolder * EnemyShip::Get_MyGraph() { return MyGraph; }
@@ -147,3 +152,5 @@ void EnemyShip::FollowAlly(EnemyShip * ally)
 
 	if (distance > accelerationDistance) Accelerate();
 }
+
+void EnemyShip::CalculateSpawnPoints() {} // we can rotate our sprite, so we have to calculate new position of spawn points for bullets/ships

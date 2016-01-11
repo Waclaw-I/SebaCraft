@@ -28,25 +28,25 @@ int main()
 	LoadController::LoadTextures(); // these are just textures of our objects
 
 	// actual objects are created here
-	SpriteHolder SebamusSprite(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);	// Our SpriteLoader is using texture from TextureArray
+
+	// Our SpriteLoader is using texture from TextureArray
 
 	SpriteHolder Background1(LoadController::BackgroundTextureArray[0], LoadController::BackgroundTextureArray[0].Get_x(), LoadController::BackgroundTextureArray[0].Get_y(), 0, 1.2);
 	SpriteHolder Background2(LoadController::BackgroundTextureArray[1], LoadController::BackgroundTextureArray[1].Get_x(), LoadController::BackgroundTextureArray[1].Get_y(), 0, 0.5);
 
 	Background1.MySprite.setPosition(0, 0);
-	Background2.MySprite.setPosition(550, 300);
+	Background2.MySprite.setPosition(0, 0);
 
-	Player * Sebamus = new Player(SebamusSprite.Get_graphSize_x(), SebamusSprite.Get_graphSize_y());	// our HERO and all his logics
-	SmallFighter * Statek = new SmallFighter(300, 300, 0.2, 100, 2.5, 1, 1, 90, 1);
-	Medivac * Statek1 = new Medivac(400, 400, 0.15, 100, 2, 1, 1, 90, 1);
+	Player * Sebamus = new Player();	// our HERO and all his logics
+
 	SpaceStation * Station = new SpaceStation(0.1, 2);
 
-	EnemyController::InsertNewEnemyShip(Statek);
-	EnemyController::InsertNewEnemyShip(Statek1);
+	//Station->SpawnMedivac();
+	Station->SpawnSmallFighter();
 
 	
 
-	RenderWindow MainWindow(VideoMode(1366, 768, 32), "SebaCraft", Style::Fullscreen); // main window. Need to think about the proper size (doesn't matter when in Fullscreen mode)
+	RenderWindow MainWindow(VideoMode(1366, 768, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window. Need to think about the proper size (doesn't matter when in Fullscreen mode)
 
 
 
@@ -77,11 +77,18 @@ int main()
 				if (zdarzenie.type == Event::Closed) MainWindow.close();
 			}
 
-			SebamusSprite.MySprite.setPosition(static_cast<float>(Sebamus->Get_x_Position()), static_cast<float>(Sebamus->Get_y_Position()));
-			SebamusSprite.MySprite.setRotation(Sebamus->Get_Rotation());
+			Sebamus->GetLevelOneGraph()->MySprite.setPosition(Sebamus->Get_x_Position(), Sebamus->Get_y_Position());
+			Sebamus->GetLevelOneGraph()->MySprite.setRotation(Sebamus->Get_Rotation());
 
 			Background1.MySprite.setPosition(Sebamus->Get_x_Position(), Sebamus->Get_y_Position());
-			Station->Get_MyGraph()->MySprite.rotate(Station->Get_RotationSpeed());
+			Background2.MySprite.setPosition( (Sebamus->Get_x_Position()* 0.8), (Sebamus->Get_y_Position() *0.8) );
+
+			Station->Get_MyGraph()->MySprite.setRotation(Station->Get_Rotation());
+
+			Station->RotateRight();
+
+			Station->SpawnSmallFighter();
+			Station->SpawnMedivac();
 
 			OurCamera.setCenter(Sebamus->Get_x_Position(), Sebamus->Get_y_Position()); // Camera
 			MainWindow.setView(OurCamera);
@@ -113,7 +120,7 @@ int main()
 			MainWindow.draw(Background1.MySprite);
 			MainWindow.draw(Background2.MySprite);
 			MainWindow.draw(Station->Get_MyGraph()->MySprite);
-			MainWindow.draw(SebamusSprite.MySprite);
+			MainWindow.draw(Sebamus->GetLevelOneGraph()->MySprite);
 			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
 			{
 				MainWindow.draw(EnemyController::ArrayOfEnemies[i]->Get_MyGraph()->MySprite);

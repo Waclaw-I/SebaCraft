@@ -26,15 +26,17 @@ public:
 	double Get_ActualSpeed_x();
 	double Get_ActualSpeed_y();
 	double GetActualHealth();
+	double GetRotationInRadians();
 
 	bool Get_IsAlive();
 
+	virtual void CalculateSpawnPoints();
 
 	void LooseHealth(int);
 	void Accelerate();
 	void Break();
-	void RotateLeft();
-	void RotateRight();
+	virtual void RotateLeft();
+	virtual void RotateRight();
 	void Die();
 	void Move();
 

@@ -9,6 +9,53 @@ using namespace std;
 
 class Player
 {
+
+public:
+	Player();
+	~Player();
+
+	void GainHealth(int);
+	void GainEnergy(int);
+	void GainCapacity(int);				// Adding values to the variables
+	void Accelerate();
+	void GainAcceleration(double);
+
+	void SetBulletSpawnPoints(int, int, int, int);
+	void Calculate_SP_Positions();
+
+	void LooseHealth(int);
+	void LooseEnergy(int);
+	void LooseCapacity(int);			// Substracting values from the variables
+	void Break();
+	void LooseAcceleration(double);
+	void Die();
+
+	double Get_x_Position();				// methods for returning position to Displayer class
+	double Get_y_Position();
+	int GetSize_x();
+	int GetSize_y();
+	double Get_Rotation();
+	double Get_RotationInRadians();
+	double Get_RotationSpeed();
+	double Get_ActualSpeed_x();
+	double Get_ActualSpeed_y();
+	bool Get_IfAlive();
+
+	void SetTimeToShoot(double);
+
+
+	void RotateLeft();
+	void RotateRight();
+
+	double Get_ShootingSpeed();
+	double Get_TimeToShoot();
+
+	void Move();
+
+	void ShootFromMainCannons();
+
+	SpriteHolder * GetLevelOneGraph();
+
 private:
 
 	string tag;
@@ -50,46 +97,7 @@ private:
 	double y;
 	double rotation;
 
-public:
-	Player(int, int);
-
-	void GainHealth(int);
-	void GainEnergy(int);
-	void GainCapacity(int);				// Adding values to the variables
-	void Accelerate();
-	void GainAcceleration(double);
-
-	void SetBulletSpawnPoints(int, int, int, int);
-	void Calculate_SP_Positions();
-
-	void LooseHealth(int);
-	void LooseEnergy(int);
-	void LooseCapacity(int);			// Substracting values from the variables
-	void Break();
-	void LooseAcceleration(double);
-	void Die();
-
-	double Get_x_Position();				// methods for returning position to Displayer class
-	double Get_y_Position();
-	int GetSize_x();
-	int GetSize_y();
-	double Get_Rotation();
-	double Get_RotationInRadians();
-	double Get_RotationSpeed();
-	double Get_ActualSpeed_x();
-	double Get_ActualSpeed_y();
-	bool Get_IfAlive();
-
-	void SetTimeToShoot(double);
+	SpriteHolder * levelOneGraph;
 
 
-	void RotateLeft();
-	void RotateRight();
-
-	double Get_ShootingSpeed();
-	double Get_TimeToShoot();
-
-	void Move();
-
-	void ShootFromMainCannons();
 };
