@@ -2,6 +2,10 @@
 
 #include "SpriteHolder.h"
 
+
+class Player;
+
+
 class BulletBasicClass
 {
 
@@ -13,6 +17,7 @@ public:
 	virtual void Move();
 	virtual double GetDuration();
 	virtual bool Collision();
+	virtual bool CollisionWithPlayer(Player *);
 	void DecreaseDuration(double);
 
 	virtual SpriteHolder * GetBulletGraph() { return BulletGraph; } // this method ll be overrided

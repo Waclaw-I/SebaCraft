@@ -20,29 +20,6 @@ PlayerBullets::~PlayerBullets()
 	delete BulletGraph; // we need to free memory occupied by the graphic of the bullet
 }
 
-void PlayerBullets::Move() // temp
-{
-	if ((rotation >= 0) && (rotation < 90))					// +/+ quarter
-	{
-		position_x += speed *((90 - rotation) / 90);
-		position_y += speed *(rotation / 90);
-	}
-	if ((rotation >= 90) && (rotation < 180))					// +/- quarter
-	{
-		position_x -= speed *((rotation - 90) / 90);
-		position_y += speed *((180 - rotation) / 90);
-	}
-	if ((rotation >= 180) && (rotation < 270))					// -/- quarter
-	{
-		position_x -= speed *((270 - rotation) / 90);
-		position_y -= speed *((rotation - 180) / 90);
-	}
-	if ((rotation >= 270) && (rotation < 360))					// -/+ quarter
-	{
-		position_x += speed *((rotation - 270) / 90);
-		position_y -= speed *((360 - rotation) / 90);
-	}
-}
 
 bool PlayerBullets::Collision()
 {

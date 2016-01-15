@@ -16,4 +16,10 @@ public:
 
 
 	static vector <BulletBasicClass *>  ArrayOfBullets;
+
+	static Player * player;
+
+private:
+
+	
 };

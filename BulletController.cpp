@@ -6,6 +6,7 @@
 using namespace std;
 
  vector <BulletBasicClass *>  BulletController::ArrayOfBullets;
+ Player * BulletController::player;
 
 void BulletController::InsertNewBullet(BulletBasicClass * bullet)
 {
@@ -19,7 +20,7 @@ void BulletController::MoveBullets()
 	{
 		if (ArrayOfBullets.size() > 0) UpdateSpritesPosition(i);
 		ArrayOfBullets[i]->Move();
-		if (ArrayOfBullets[i]->Collision())
+		if (ArrayOfBullets[i]->Collision() || ArrayOfBullets[i]->CollisionWithPlayer(player))
 		{
 			ArrayOfBullets[i]->GetBulletGraph()->LogicIsDead();
 			delete ArrayOfBullets[i];

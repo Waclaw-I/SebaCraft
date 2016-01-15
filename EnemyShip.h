@@ -43,7 +43,9 @@ public:
 	virtual SpriteHolder * Get_MyGraph();
 
 	void FollowPlayer(Player *);
-	void FollowAlly(EnemyShip *);
+	void FollowAlly(EnemyShip *); // need to add an array of nearest targets to get it work
+
+	virtual void Shoot();
 
 protected:
 

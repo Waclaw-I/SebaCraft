@@ -153,4 +153,6 @@ void EnemyShip::FollowAlly(EnemyShip * ally)
 	if (distance > accelerationDistance) Accelerate();
 }
 
+void EnemyShip::Shoot(){}
+
 void EnemyShip::CalculateSpawnPoints() {} // we can rotate our sprite, so we have to calculate new position of spawn points for bullets/ships

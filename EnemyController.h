@@ -12,7 +12,9 @@ public:
 
 	void static InsertNewEnemyShip(EnemyShip *);
 	void static MoveEnemyShips(Player *);
+	void static ShootToPlayer(Player *);
 	void static UpdateSpritesPosition(int);
 
 	static vector <EnemyShip *> ArrayOfEnemies;
+
 };

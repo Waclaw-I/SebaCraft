@@ -23,6 +23,7 @@ void EnemyController::MoveEnemyShips(Player * player)
 		{
 			ArrayOfEnemies[i]->FollowPlayer(player);
 			ArrayOfEnemies[i]->Move();
+			ArrayOfEnemies[i]->Shoot();
 
 			if (ArrayOfEnemies[i]->Get_IsAlive() == false)
 			{
@@ -35,6 +36,7 @@ void EnemyController::MoveEnemyShips(Player * player)
 		
 	}
 }
+
 
 void EnemyController::UpdateSpritesPosition(int i)
 {

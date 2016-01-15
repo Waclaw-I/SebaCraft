@@ -28,8 +28,31 @@ int BulletBasicClass::GetQuality() { return quality; }
 
 BulletBasicClass::~BulletBasicClass() {}
 
-void BulletBasicClass::Move() {}
+void BulletBasicClass::Move() 
+{
+	if ((rotation >= 0) && (rotation < 90))					// +/+ quarter
+	{
+		position_x += speed *((90 - rotation) / 90);
+		position_y += speed *(rotation / 90);
+	}
+	if ((rotation >= 90) && (rotation < 180))					// +/- quarter
+	{
+		position_x -= speed *((rotation - 90) / 90);
+		position_y += speed *((180 - rotation) / 90);
+	}
+	if ((rotation >= 180) && (rotation < 270))					// -/- quarter
+	{
+		position_x -= speed *((270 - rotation) / 90);
+		position_y -= speed *((rotation - 180) / 90);
+	}
+	if ((rotation >= 270) && (rotation < 360))					// -/+ quarter
+	{
+		position_x += speed *((rotation - 270) / 90);
+		position_y -= speed *((360 - rotation) / 90);
+	}
+}
 bool BulletBasicClass::Collision() { return false; }
+bool BulletBasicClass::CollisionWithPlayer(Player *) { return false; }
 
 double BulletBasicClass::GetDuration() { return duration; }
 double BulletBasicClass::GetRotation() { return rotation; }

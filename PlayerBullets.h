@@ -13,7 +13,6 @@ class PlayerBullets : public BulletBasicClass
 public:
 
 	PlayerBullets(double, double, int, double, double, double);
-	virtual void Move() override;
 	virtual bool Collision() override;
 
 	~PlayerBullets();

@@ -10,7 +10,23 @@ public:
 	SmallFighter(double, double);
 	~SmallFighter();
 	SpriteHolder * Get_MyGraph() override;
+	void Shoot() override;
+
+	void CalculateSpawnPoints() override;
+
+	void SetBulletSpawnPoints(int, int, int, int);
+
 
 private:
+
+	SpawnPoint BulletSpawnPoint1;
+	SpawnPoint BulletSpawnPoint2;
+
+	double rotatedBulletSpawnPoint1_x; // we need those to spawn bullets properly
+	double rotatedBulletSpawnPoint1_y;
+	double rotatedBulletSpawnPoint2_x;
+	double rotatedBulletSpawnPoint2_y;
+
+	bool MainCannonOneShooted;
 
 };

@@ -10,6 +10,7 @@
 #include "BulletController.h"
 #include "EnemyController.h"
 #include "DisplayController.h"
+#include "SpawnController.h"
 
 
 #include "EnemyShip.h"
@@ -36,15 +37,50 @@ int main()
 {
 	
 	Start();
+	Update();
 
-	Station->SpawnSmallFighter();
-	Station->SpawnMedivac();
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+void Start()
+{
+	LoadController::LoadTextures(); // these are just textures of our objects
+	DisplayController::InitializeLevel(); // load and place background into the game world
+
+	Sebamus = new Player();	// our HERO and all his logics
+	Station = new SpaceStation(0.1, 2); // rotate speed and scale, our main enemy
+
+	BulletController::player = Sebamus;
+
+	EnemyController::InsertNewEnemyShip(Station);
+
+	DisplayController::InsertNewSprite(Station->Get_MyGraph());
+	DisplayController::InsertNewSprite(Sebamus->GetLevelOneGraph());
+
+	MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window.
+
+	OurCamera = MainWindow->getDefaultView();
+	OurCamera.setViewport(FloatRect(0, 0, 0.8, 0.8));
+}
+
+void Update()
+{
+	
 
 	Clock timer;
 	float accumulator = 0;
 	float timeStep = 0.0166f; // 60FPS
 
-	
+
 	while (MainWindow->isOpen())
 	{
 		accumulator += timer.restart().asSeconds();
@@ -59,9 +95,11 @@ int main()
 				if (zdarzenie.type == Event::Closed) MainWindow->close();
 			}
 
-			OurCamera.setCenter(Sebamus->Get_x_Position(), Sebamus->Get_y_Position()); // Camera
+			OurCamera.setCenter(Sebamus->Get_x_Position(), Sebamus->Get_y_Position()); // Camera centralized on player
 			MainWindow->setView(OurCamera);
 
+			// ==================================LOGIC ======================================
+			SpawnController::SpawnEnemies(Station);
 			EnemyController::MoveEnemyShips(Sebamus); // we are moving ships towards the player
 
 			PlayerController::Moving(Sebamus); // controls movements of the player
@@ -71,9 +109,8 @@ int main()
 			DisplayController::CheckIfDestroyed();
 			DisplayController::UpdatePlayerGraph(Sebamus);
 
+			//==================DISPLAYING ON THE SCEEN STARTS HERE======================
 			MainWindow->clear();
-
-			cout << DisplayController::ArrayOfSprites.size() << endl;
 
 			for (int i = 0; i < DisplayController::ArrayOfSprites.size(); i++)
 			{
@@ -84,29 +121,10 @@ int main()
 			}
 
 			MainWindow->display();
+			//============================== END =====================================
+
 			accumulator -= timeStep;
 
 		}
 	}
-	return 0;
-}
-
-
-void Start()
-{
-	LoadController::LoadTextures(); // these are just textures of our objects
-	DisplayController::InitializeLevel(); // load and place background into the game world
-
-	Sebamus = new Player();	// our HERO and all his logics
-	Station = new SpaceStation(0.1, 2); // rotate speed and scale, our main enemy
-
-	EnemyController::InsertNewEnemyShip(Station);
-
-	DisplayController::InsertNewSprite(Station->Get_MyGraph());
-	DisplayController::InsertNewSprite(Sebamus->GetLevelOneGraph());
-
-	MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window.
-
-	OurCamera = MainWindow->getDefaultView();
-	OurCamera.setViewport(FloatRect(0, 0, 0.8, 0.8));
 }
