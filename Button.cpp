@@ -5,7 +5,7 @@ using namespace std;
 
 Button::Button(std::string text, int size, float x, float y)
 {
-	if (!this->font.loadFromFile("Fonts\\Starcraft.otf"))
+	if (!this->font.loadFromFile("Fonts/Starcraft.otf"))
 	{
 		cout << "Couldnt upload this font";
 	}

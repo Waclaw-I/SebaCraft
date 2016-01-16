@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <Windows.h>
 
 #include "SpriteHolder.h"
 #include "TextureLoader.h"
@@ -19,7 +18,6 @@
 #include "Medivac.h"
 #include "SpaceStation.h"
 
-#include <conio.h>
 #include <iostream>
 
 using namespace sf;
