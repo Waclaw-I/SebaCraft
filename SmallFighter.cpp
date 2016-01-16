@@ -62,18 +62,17 @@ void SmallFighter::SetBulletSpawnPoints(int x1, int y1, int x2, int y2)
 void SmallFighter::Shoot()
 {
 	CalculateSpawnPoints();
-	if (MainCannonOneShooted == false)
-	{
-		//SmallFighterBullets * bullet = new SmallFighterBullets(x + rotatedBulletSpawnPoint1_x, y + rotatedBulletSpawnPoint1_y, attackPower, 10, 2, rotation);
-		MainCannonOneShooted = true;
-		//BulletController::InsertNewBullet(bullet);
+	//if (MainCannonOneShooted == false)
+	//{
+		SmallFighterBullets * bullet1 = new SmallFighterBullets(x + rotatedBulletSpawnPoint1_x, y + rotatedBulletSpawnPoint1_y, attackPower, 10, 2, rotation);
+		BulletController::InsertNewBullet(bullet1);
+		DisplayController::InsertNewDrawableObject(bullet1);
 		
-	}
-	else
-	{
-		SmallFighterBullets * bullet = new SmallFighterBullets(x + rotatedBulletSpawnPoint2_x, y + rotatedBulletSpawnPoint2_y, attackPower, 10, 2, rotation);
-		MainCannonOneShooted = false;
-		BulletController::InsertNewBullet(bullet);
-		DisplayController::InsertNewDrawableObject(bullet);
-	}
+	//}
+	//else
+	//{
+		SmallFighterBullets * bullet2 = new SmallFighterBullets(x + rotatedBulletSpawnPoint2_x, y + rotatedBulletSpawnPoint2_y, attackPower, 10, 2, rotation);
+		BulletController::InsertNewBullet(bullet2);
+		DisplayController::InsertNewDrawableObject(bullet2);
+	//}
 }

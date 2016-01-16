@@ -13,7 +13,7 @@ void DisplayController::InitializeLevel()
 {
 	DrawableObject * Background1 = new DrawableObject();
 	DrawableObject * Background2 = new DrawableObject();
-	SpriteHolder * bg1 = new SpriteHolder(LoadController::BackgroundTextureArray[0], LoadController::BackgroundTextureArray[0].Get_x(), LoadController::BackgroundTextureArray[0].Get_y(), 0, 1.2);
+	SpriteHolder * bg1 = new SpriteHolder(LoadController::BackgroundTextureArray[0], LoadController::BackgroundTextureArray[0].Get_x(), LoadController::BackgroundTextureArray[0].Get_y(), 0, 1.5);
 	SpriteHolder * bg2 = new SpriteHolder(LoadController::BackgroundTextureArray[1], LoadController::BackgroundTextureArray[1].Get_x(), LoadController::BackgroundTextureArray[1].Get_y(), 0, 0.5);
 	Background1->SetMyGraph(bg1);
 	Background2->SetMyGraph(bg2);

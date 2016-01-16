@@ -69,10 +69,11 @@ void Start()
 	DisplayController::InsertNewDrawableObject(Station);
 	DisplayController::InsertNewDrawableObject(Sebamus);
 
-	MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window.
+	//MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft", Style::Fullscreen); // main window.
+	MainWindow = new RenderWindow(VideoMode::getDesktopMode(), "SebaCraft", Style::Fullscreen); 
 
 	OurCamera = MainWindow->getDefaultView();
-	OurCamera.setViewport(FloatRect(0, 0, 0.8, 0.8));
+	OurCamera.setViewport(FloatRect(0, 0, 1, 1));
 }
 
 void Update()

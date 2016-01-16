@@ -20,6 +20,8 @@ EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health
 
 	x = spawn_x;
 	y = spawn_y;
+
+	timeToShoot = 0;
 }
 
 EnemyShip::~EnemyShip() { }
@@ -155,3 +157,17 @@ void EnemyShip::FollowAlly(EnemyShip * ally)
 void EnemyShip::Shoot(){}
 
 void EnemyShip::CalculateSpawnPoints() {} // we can rotate our sprite, so we have to calculate new position of spawn points for bullets/ships
+
+bool EnemyShip::SetTimeToShoot(double amount) // this is our counter for delaying shots
+{ 
+	if (timeToShoot <= fireRate) 
+	{ 
+		timeToShoot += amount;
+		return false;
+	}
+	else 
+	{
+		timeToShoot = 0;
+		return true;
+	}
+}

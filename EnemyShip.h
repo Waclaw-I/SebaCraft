@@ -46,7 +46,7 @@ public:
 	void FollowAlly(EnemyShip *); // need to add an array of nearest targets to get it work
 
 	virtual void Shoot();
-
+	virtual bool SetTimeToShoot(double);
 protected:
 
 	string tag;
@@ -64,6 +64,7 @@ protected:
 
 	int attackPower;
 	double fireRate;
+	double timeToShoot;
 
 	int size_x;
 	int size_y;

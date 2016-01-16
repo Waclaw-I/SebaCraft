@@ -36,7 +36,7 @@ bool PlayerBullets::Collision()
 					return true;
 				}
 
-			return false;
+			//return false;
 
 
 		}
