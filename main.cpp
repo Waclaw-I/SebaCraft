@@ -70,6 +70,7 @@ void Start()
 
 	DisplayController::InsertNewDrawableObject(Station);
 	DisplayController::InsertNewDrawableObject(Sebamus);
+	DisplayController::InsertNewDrawableObject(&Sebamus->GetRotatingCannon());
 
 	//MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft", Style::Fullscreen); // main window.
 	MainWindow = new RenderWindow(VideoMode::getDesktopMode(), "SebaCraft"/*, Style::Fullscreen*/); 

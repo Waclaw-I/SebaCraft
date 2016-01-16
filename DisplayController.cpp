@@ -1,5 +1,6 @@
 #include "DisplayController.h"
 #include "BulletController.h"
+#include "RotatingCannon.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -32,8 +33,16 @@ void DisplayController::InsertNewDrawableObject(DrawableObject * object)
 
 void DisplayController::UpdatePlayerGraph(Player * player)
 {
-	player->GetMyGraph()->MySprite.setPosition(player->Get_x_Position(), player->Get_y_Position());
-	player->GetMyGraph()->MySprite.setRotation(player->Get_Rotation());
+	float playerX = player->Get_x_Position();
+	float playerY = player->Get_y_Position();
+	float playerRotation = player->Get_Rotation();
+	RotatingCannon& cannon = player->GetRotatingCannon();
+	cannon.GetMyGraph()->MySprite.setPosition(playerX, playerY);	
+
+	player->GetMyGraph()->MySprite.setPosition(playerX, playerY);
+	player->GetMyGraph()->MySprite.setRotation(playerRotation);
+
+	cannon.GetMyGraph()->MySprite.setPosition(playerX, playerY);	
 }
 
 void DisplayController::CheckIfDestroyed()

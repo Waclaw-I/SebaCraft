@@ -9,7 +9,7 @@ private:
 
 public:
 
-	static TextureLoader ShipTexturesArray[4]; // Table with our textures, where 0 is for player.
+	static TextureLoader ShipTexturesArray[5]; // Table with our textures, where 0 is for player.
 	static TextureLoader BulletTextureArray[2];
 	static TextureLoader BackgroundTextureArray[2];
 
