@@ -34,7 +34,4 @@ bool SmallFighterBullets::CollisionWithPlayer(Player * player)
 }
 	
 
-SmallFighterBullets::~SmallFighterBullets()
-{
-	delete myGraph; // we need to free memory occupied by the graphic of the bullet
-}
+SmallFighterBullets::~SmallFighterBullets(){}

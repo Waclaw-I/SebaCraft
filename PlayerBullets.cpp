@@ -15,10 +15,7 @@ PlayerBullets::PlayerBullets(double spawn_x, double spawn_y, int damage, double 
 	quality += qualityBoost;
 }
 
-PlayerBullets::~PlayerBullets()
-{
-	delete myGraph; // we need to free memory occupied by the graphic of the bullet
-}
+PlayerBullets::~PlayerBullets(){}
 
 
 bool PlayerBullets::Collision()

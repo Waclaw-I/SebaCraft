@@ -15,10 +15,7 @@ SpaceStation::SpaceStation(double rotationSpeed, double scale) : EnemyShip(1000,
 
 }
 
-SpaceStation::~SpaceStation()
-{
-	delete myGraph;
-}
+SpaceStation::~SpaceStation(){}
 
 
 void SpaceStation::RotateLeft()

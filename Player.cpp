@@ -21,10 +21,7 @@ Player::Player() // I need to change the style of gathering this data
 	Calculate_SP_Positions(); // First time calculations. Later we ll use it during rotation manoeuvers
 }
 
-Player::~Player()
-{
-	delete myGraph;
-}
+Player::~Player(){}
 
 double Player::Get_x_Position() {return x;}
 

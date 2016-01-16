@@ -38,10 +38,7 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, s
 	accelerationDistance = 150;
 }
 
-SmallFighter::~SmallFighter()
-{
-	delete myGraph;
-}
+SmallFighter::~SmallFighter(){}
 
 
 void SmallFighter::CalculateSpawnPoints()

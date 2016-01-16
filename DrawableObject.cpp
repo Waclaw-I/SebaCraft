@@ -6,3 +6,8 @@ void DrawableObject::SetMyGraph(SpriteHolder * graph)
 {
 	myGraph = graph;
 }
+
+DrawableObject::~DrawableObject()
+{
+	delete myGraph;
+}

@@ -27,7 +27,4 @@ Medivac::Medivac(double spawn_x, double spawn_y) : EnemyShip(spawn_x, spawn_y, 0
 	accelerationDistance = 200;
 }
 
-Medivac::~Medivac()
-{
-	delete myGraph;
-}
+Medivac::~Medivac(){}
