@@ -27,13 +27,19 @@ void RotatingCannon::scanToFindNearest()
 {}
 
 bool RotatingCannon::isTargetInRange(DrawableObject* target) 
-{}
+{
+	return false;
+}
 
 void RotatingCannon::changeTarget(DrawableObject* newTarget)
 {}
 
 float RotatingCannon::getOnPlayerX()
-{}
+{
+	return 0;
+}
 
 float RotatingCannon::getOnPlayerY()
-{}
+{
+	return 0;
+}
