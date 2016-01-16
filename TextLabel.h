@@ -2,11 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-class Button
+#include "LoadController.h"
+
+class TextLabel
 {
 public:
 
-	Button(std::string, int, float, float );
+	TextLabel(std::string, int, float, float );
+	~TextLabel();
 
 	sf::Text GetText();
 
@@ -14,15 +17,18 @@ public:
 
 	float GetPosition_x();
 	float GetPosition_y();
+	void SetPosition_x(float);
+	void SetPosition_y(float);
 	float GetSize_x();
 	float GetSize_y();
+
+	void UpdateTextPosition();
 
 	bool IsMouseOver(float, float);
 
 private:
 
 	sf::Text ourText;
-	sf::Font font;
 	int scale;
 
 	float position_x;

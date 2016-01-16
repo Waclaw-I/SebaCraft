@@ -32,6 +32,7 @@ public:
 	bool Get_IsAlive();
 
 	virtual void CalculateSpawnPoints();
+	void UpdateHpBar();
 
 	void LooseHealth(int);
 	void Accelerate();

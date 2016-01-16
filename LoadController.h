@@ -13,6 +13,9 @@ public:
 	static TextureLoader BulletTextureArray[2];
 	static TextureLoader BackgroundTextureArray[2];
 
+	static sf::Font * FontsArray;
+
 
 	static void LoadTextures();
+	static void LoadFonts();
 };

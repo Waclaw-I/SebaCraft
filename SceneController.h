@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "Button.h"
+#include "TextLabel.h"
 
 using namespace sf;
 using namespace std;

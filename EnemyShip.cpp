@@ -22,6 +22,9 @@ EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health
 	y = spawn_y;
 
 	timeToShoot = 0;
+
+	hpBar = new TextLabel(to_string(actualHealth) + "/" + to_string(maxHealth), 10, x, y);
+	hpBar->GetText().setColor(sf::Color::Green);
 }
 
 EnemyShip::~EnemyShip() { }
@@ -50,6 +53,13 @@ double EnemyShip::GetRotationInRadians()
 }
 
 bool EnemyShip::Get_IsAlive(){ return isAlive; }
+
+void EnemyShip::UpdateHpBar()
+{
+	hpBar->SetPosition_x(x);
+	hpBar->SetPosition_y(y);
+	hpBar->UpdateTextPosition();
+}
 
 
 void EnemyShip::Die() { isAlive = false; }
@@ -108,10 +118,13 @@ void EnemyShip::Break()
 	}
 }
 
+
 void EnemyShip::Move()
 {
 	x += actualSpeed_x;
 	y += actualSpeed_y;
+
+	UpdateHpBar();
 }
 
 void EnemyShip::RotateLeft()

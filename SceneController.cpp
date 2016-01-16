@@ -6,9 +6,11 @@ int SceneController::sceneNumber = 0;
 
 bool SceneController::DisplayStartMenu(int x, int y)
 {
+	LoadController::LoadFonts();
+
 	RenderWindow MenuWindow(VideoMode(x, y, 32), "SebaCraft Menu"/*, Style::Fullscreen*/); // main window.
-	Button start_Button("START", 65, 275, 100);
-	Button exit_Button("WYJSCIE", 65, 235, 400);
+	TextLabel start_Button("START", 65, 275, 100);
+	TextLabel exit_Button("WYJSCIE", 65, 235, 400);
 
 
 	while (MenuWindow.isOpen())
@@ -36,7 +38,7 @@ bool SceneController::DisplayStartMenu(int x, int y)
 				if (Mouse::isButtonPressed(Mouse::Left))
 				{
 					MenuWindow.close();
-					return true; // start the game already!
+					return false; // nope!
 				}
 			}
 				else exit_Button.SetColor(sf::Color::White);

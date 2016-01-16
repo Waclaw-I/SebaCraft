@@ -39,7 +39,10 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, s
 }
 
 SmallFighter::~SmallFighter()
-{}
+{
+	delete myGraph;
+	delete hpBar;
+}
 
 
 void SmallFighter::CalculateSpawnPoints()

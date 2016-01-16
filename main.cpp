@@ -72,7 +72,7 @@ void Start()
 	DisplayController::InsertNewDrawableObject(Sebamus);
 
 	//MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft", Style::Fullscreen); // main window.
-	MainWindow = new RenderWindow(VideoMode::getDesktopMode(), "SebaCraft", Style::Fullscreen); 
+	MainWindow = new RenderWindow(VideoMode::getDesktopMode(), "SebaCraft"/*, Style::Fullscreen*/); 
 
 	OurCamera = MainWindow->getDefaultView();
 	OurCamera.setViewport(FloatRect(0, 0, 1, 1));
@@ -125,6 +125,11 @@ void Update()
 				if (i == 1) DisplayController::ArrayOfDrawableObjects[1]->GetMyGraph()->MySprite.setPosition((Sebamus->Get_x_Position()* 0.8), (Sebamus->Get_y_Position() *0.8));
 
 				MainWindow->draw(DisplayController::ArrayOfDrawableObjects[i]->GetMyGraph()->MySprite);
+			}
+
+			for (int i = 0; i < EnemyController::ArrayOfEnemies.size(); i++)
+			{
+				MainWindow->draw(EnemyController::ArrayOfEnemies[i]->GetHpBar()->GetText()); // our health bars
 			}
 
 			MainWindow->display();
