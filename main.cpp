@@ -37,10 +37,14 @@ View OurCamera;
 int main()
 {
 
-	SceneController::DisplayStartMenu(800, 600);
+	bool state = SceneController::DisplayStartMenu(800, 600);
 	
-	Start();
-	Update();
+	if (state == true)
+	{
+		Start();
+		Update();
+	}
+	else
 
 	return 0;
 }

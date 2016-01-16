@@ -21,4 +21,9 @@ Button::Button(std::string text, int size, float x, float y)
 
 }
 
+void Button::SetColor(sf::Color color)
+{
+	ourText.setColor(color);
+}
+
 sf::Text Button::GetText() { return ourText; }

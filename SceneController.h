@@ -11,7 +11,8 @@ class SceneController
 {
 public:
 
-	static void DisplayStartMenu(int, int); // x and y for window resolution
+	static bool DisplayStartMenu(int, int); // x and y for window resolution
+
 private:
 	static int sceneNumber;
 };

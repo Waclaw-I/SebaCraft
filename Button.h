@@ -10,6 +10,8 @@ public:
 
 	sf::Text GetText();
 
+	void SetColor(sf::Color);
+
 private:
 
 	sf::Text ourText;
