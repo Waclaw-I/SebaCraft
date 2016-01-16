@@ -12,20 +12,11 @@ class SpriteHolder
 
 	friend class DisplayController;
 
-private: // informations about size, not position in the game world!
-	double hitboxSize_x;
-	double hitboxSize_y;
-	double graphSize_x;
-	double graphSize_y;
-	double rotation;
-	double scale;
-
-	double x_center;
-	double y_center;
-
-	bool isLogicAlive;
-
 public:
+
+	SpriteHolder(TextureLoader &, double, double, double, double);
+	~SpriteHolder();
+
 	Sprite MySprite;
 
 	double Get_hitboxSize_x();
@@ -40,10 +31,18 @@ public:
 	bool Get_isLogicAlive();
 	void LogicIsDead();
 
+private: // informations about size, not position in the game world!
+	double hitboxSize_x;
+	double hitboxSize_y;
+	double graphSize_x;
+	double graphSize_y;
+	double rotation;
+	double scale;
 
-	
+	double x_center;
+	double y_center;
+
+	bool isLogicAlive;
 
 
-
-	SpriteHolder(TextureLoader &, double, double, double, double);
 };

@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <iostream>
+using namespace std;
+
 
 vector <DrawableObject *>  DisplayController::ArrayOfDrawableObjects;
 
@@ -39,6 +42,8 @@ void DisplayController::CheckIfDestroyed()
 	{
 		if (ArrayOfDrawableObjects[i]->GetMyGraph()->Get_isLogicAlive() == false)
 		{
+			
+			delete ArrayOfDrawableObjects[i];
 			ArrayOfDrawableObjects.erase(ArrayOfDrawableObjects.begin() + i); // we just need to resize our array. Pointer is deleted in object destructor
 		}
 	}

@@ -1,6 +1,9 @@
 #include "SmallFighterBullets.h"
 #include "LoadController.h"
 
+#include <iostream>
+using namespace std;
+
 SmallFighterBullets::SmallFighterBullets(double spawn_x, double spawn_y, int damage, double speed, double duration, double rotation) :
 	BulletBasicClass(spawn_x, spawn_y, damage, speed, duration, rotation), tag("EnemyBullet")
 
@@ -26,12 +29,16 @@ bool SmallFighterBullets::CollisionWithPlayer(Player * player)
 			if ((position_y >= y_start) && (position_y <= y_end))
 			{
 				player->LooseHealth(damage);
+				cout << "trafiony";
 				return true;
 			}
-
 		return false;
 	}
+	else return false;
 }
 	
 
-SmallFighterBullets::~SmallFighterBullets(){}
+SmallFighterBullets::~SmallFighterBullets()
+{
+	delete this->myGraph;
+}

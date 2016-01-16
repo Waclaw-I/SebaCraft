@@ -1,5 +1,8 @@
 #include "DrawableObject.h"
 
+#include <iostream>
+using namespace std;
+
 SpriteHolder * DrawableObject::GetMyGraph() { return myGraph; }
 
 void DrawableObject::SetMyGraph(SpriteHolder * graph)
@@ -9,5 +12,5 @@ void DrawableObject::SetMyGraph(SpriteHolder * graph)
 
 DrawableObject::~DrawableObject()
 {
-	delete myGraph;
+	
 }

@@ -11,7 +11,6 @@ using namespace std;
 void BulletController::InsertNewBullet(BulletBasicClass * bullet)
 {
 	ArrayOfBullets.push_back(bullet);
-	DisplayController::ArrayOfDrawableObjects.push_back(bullet);
 }
 
 void BulletController::MoveBullets()
@@ -28,11 +27,10 @@ void BulletController::MoveBullets()
 			continue;
 		}
 		
-		if (ArrayOfBullets[i]->GetDuration() < 0)
+		if (ArrayOfBullets[i]->GetDuration() <= 0)
 		{
 			ArrayOfBullets[i]->GetMyGraph()->LogicIsDead();
 			ArrayOfBullets.erase(ArrayOfBullets.begin() + i);
-			continue;
 		}
 		
 	}

@@ -30,6 +30,8 @@ SpriteHolder::SpriteHolder(TextureLoader & Texture, double size_x, double size_y
 
 }
 
+SpriteHolder::~SpriteHolder() {}
+
 double SpriteHolder::Get_hitboxSize_x() { return hitboxSize_x; }
 
 double SpriteHolder::Get_hitboxSize_y() { return hitboxSize_y; }

@@ -38,7 +38,8 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, s
 	accelerationDistance = 150;
 }
 
-SmallFighter::~SmallFighter(){}
+SmallFighter::~SmallFighter()
+{}
 
 
 void SmallFighter::CalculateSpawnPoints()
@@ -63,7 +64,7 @@ void SmallFighter::Shoot()
 	CalculateSpawnPoints();
 	if (MainCannonOneShooted == false)
 	{
-		SmallFighterBullets * bullet = new SmallFighterBullets(x + rotatedBulletSpawnPoint1_x, y + rotatedBulletSpawnPoint1_y, attackPower, 10, 2, rotation);
+		//SmallFighterBullets * bullet = new SmallFighterBullets(x + rotatedBulletSpawnPoint1_x, y + rotatedBulletSpawnPoint1_y, attackPower, 10, 2, rotation);
 		MainCannonOneShooted = true;
 		//BulletController::InsertNewBullet(bullet);
 		
@@ -73,5 +74,6 @@ void SmallFighter::Shoot()
 		SmallFighterBullets * bullet = new SmallFighterBullets(x + rotatedBulletSpawnPoint2_x, y + rotatedBulletSpawnPoint2_y, attackPower, 10, 2, rotation);
 		MainCannonOneShooted = false;
 		BulletController::InsertNewBullet(bullet);
+		DisplayController::InsertNewDrawableObject(bullet);
 	}
 }
