@@ -176,12 +176,14 @@ void Player::ShootFromMainCannons()
 		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, damage, 10, 2, rotation);
 		MainCannonOneShooted = true;
 		BulletController::InsertNewBullet(bullet);
+		DisplayController::InsertNewDrawableObject(bullet);
 	}
 	else
 	{
 		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, damage, 10, 2, rotation);
 		MainCannonOneShooted = false;
 		BulletController::InsertNewBullet(bullet);
+		DisplayController::InsertNewDrawableObject(bullet);
 	}
 	
 }
