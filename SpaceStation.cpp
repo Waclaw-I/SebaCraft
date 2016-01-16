@@ -6,8 +6,8 @@ using namespace std;
 
 SpaceStation::SpaceStation(double rotationSpeed, double scale) : EnemyShip(1000, 1000, 0, 500, 0, 0, 0, 90)
 {
-	MyGraph = new SpriteHolder(LoadController::ShipTexturesArray[3], LoadController::ShipTexturesArray[3].Get_x(), LoadController::ShipTexturesArray[3].Get_y(), rotation, scale);
-	MyGraph->MySprite.setPosition(spawn_x, spawn_y);
+	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[3], LoadController::ShipTexturesArray[3].Get_x(), LoadController::ShipTexturesArray[3].Get_y(), rotation, scale);
+	myGraph->MySprite.setPosition(spawn_x, spawn_y);
 
 	this->rotationSpeed = rotationSpeed;
 	SetShipSpawnPoints(-78, 1, 1, 78); // for this specific sprite
@@ -17,10 +17,9 @@ SpaceStation::SpaceStation(double rotationSpeed, double scale) : EnemyShip(1000,
 
 SpaceStation::~SpaceStation()
 {
-	delete MyGraph;
+	delete myGraph;
 }
 
-SpriteHolder * SpaceStation::Get_MyGraph() { return MyGraph; }
 
 void SpaceStation::RotateLeft()
 {

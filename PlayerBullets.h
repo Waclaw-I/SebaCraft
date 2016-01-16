@@ -17,11 +17,9 @@ public:
 
 	~PlayerBullets();
 
-	SpriteHolder * GetBulletGraph() override;
 
 private:
 
-	SpriteHolder * BulletGraph;
 
 	int qualityBoost;
 

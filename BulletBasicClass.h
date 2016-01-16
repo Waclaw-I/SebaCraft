@@ -1,12 +1,13 @@
 #pragma once
 
 #include "SpriteHolder.h"
+#include "DrawableObject.h"
 
 
 class Player;
 
 
-class BulletBasicClass
+class BulletBasicClass : public DrawableObject
 {
 
 public:
@@ -20,7 +21,6 @@ public:
 	virtual bool CollisionWithPlayer(Player *);
 	void DecreaseDuration(double);
 
-	virtual SpriteHolder * GetBulletGraph() { return BulletGraph; } // this method ll be overrided
 
 	double GetPosition_x();
 	double GetPosition_y();
@@ -42,6 +42,5 @@ protected:
 
 	int quality; // if lower than 2o (%) our bullet will miss the target
 
-	SpriteHolder * BulletGraph; // we need this just to complete the definition of GetBulletGraph method
 
 };

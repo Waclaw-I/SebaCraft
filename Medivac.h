@@ -11,7 +11,6 @@ public:
 	Medivac(double, double, double, double, double, int, double, double, double);
 	Medivac(double, double);
 	~Medivac();
-	SpriteHolder * Get_MyGraph() override;
 
 private:
 };

@@ -1,40 +1,45 @@
 #include "DisplayController.h"
+#include "BulletController.h"
 
 #include <SFML/Graphics.hpp>
 
 
-vector <SpriteHolder *>  DisplayController::ArrayOfSprites;
+vector <DrawableObject *>  DisplayController::ArrayOfDrawableObjects;
 
 void DisplayController::InitializeLevel()
 {
-	SpriteHolder * Background1 = new SpriteHolder(LoadController::BackgroundTextureArray[0], LoadController::BackgroundTextureArray[0].Get_x(), LoadController::BackgroundTextureArray[0].Get_y(), 0, 1.2);
-	SpriteHolder * Background2 = new SpriteHolder(LoadController::BackgroundTextureArray[1], LoadController::BackgroundTextureArray[1].Get_x(), LoadController::BackgroundTextureArray[1].Get_y(), 0, 0.5);
+	DrawableObject * Background1 = new DrawableObject();
+	DrawableObject * Background2 = new DrawableObject();
+	SpriteHolder * bg1 = new SpriteHolder(LoadController::BackgroundTextureArray[0], LoadController::BackgroundTextureArray[0].Get_x(), LoadController::BackgroundTextureArray[0].Get_y(), 0, 1.2);
+	SpriteHolder * bg2 = new SpriteHolder(LoadController::BackgroundTextureArray[1], LoadController::BackgroundTextureArray[1].Get_x(), LoadController::BackgroundTextureArray[1].Get_y(), 0, 0.5);
+	Background1->SetMyGraph(bg1);
+	Background2->SetMyGraph(bg2);
 
-	Background1->MySprite.setPosition(0, 0);
-	Background2->MySprite.setPosition(0, 0);
+	Background1->GetMyGraph()->MySprite.setPosition(0, 0);
+	Background2->GetMyGraph()->MySprite.setPosition(0, 0);
 
-	InsertNewSprite(Background1);
-	InsertNewSprite(Background2);
+	InsertNewDrawableObject(Background1);
+	InsertNewDrawableObject(Background2);
 }
 
-void DisplayController::InsertNewSprite(SpriteHolder * sprite)
+void DisplayController::InsertNewDrawableObject(DrawableObject * object)
 {
-	ArrayOfSprites.push_back(sprite);
+	ArrayOfDrawableObjects.push_back(object);
 }
 
 void DisplayController::UpdatePlayerGraph(Player * player)
 {
-	player->GetLevelOneGraph()->MySprite.setPosition(player->Get_x_Position(), player->Get_y_Position());
-	player->GetLevelOneGraph()->MySprite.setRotation(player->Get_Rotation());
+	player->GetMyGraph()->MySprite.setPosition(player->Get_x_Position(), player->Get_y_Position());
+	player->GetMyGraph()->MySprite.setRotation(player->Get_Rotation());
 }
 
 void DisplayController::CheckIfDestroyed()
 {
-	for (int i = 0; i < ArrayOfSprites.size(); i++)
+	for (int i = 0; i < ArrayOfDrawableObjects.size(); i++)
 	{
-		if (ArrayOfSprites[i]->Get_isLogicAlive() == false)
+		if (ArrayOfDrawableObjects[i]->GetMyGraph()->Get_isLogicAlive() == false)
 		{
-			ArrayOfSprites.erase(ArrayOfSprites.begin() + i); // we just need to resize our array. Pointer is deleted in object destructor
+			ArrayOfDrawableObjects.erase(ArrayOfDrawableObjects.begin() + i); // we just need to resize our array. Pointer is deleted in object destructor
 		}
 	}
 }

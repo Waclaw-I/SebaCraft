@@ -49,7 +49,6 @@ double EnemyShip::GetRotationInRadians()
 
 bool EnemyShip::Get_IsAlive(){ return isAlive; }
 
-SpriteHolder * EnemyShip::Get_MyGraph() { return MyGraph; }
 
 void EnemyShip::Die() { isAlive = false; }
 

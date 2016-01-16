@@ -11,7 +11,7 @@ class SpaceStation : public EnemyShip
 public:
 	SpaceStation(double, double);
 	~SpaceStation();
-	SpriteHolder * Get_MyGraph() override;
+
 
 	void CalculateSpawnPoints() override;
 

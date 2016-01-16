@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "DrawableObject.h"
 
 #include <SFML/Graphics.hpp>
 #include <math.h>
@@ -8,7 +9,7 @@ class Player;
 
 
 
-class EnemyShip // this is our parent class of the enemy. Everything what every enemy should have.
+class EnemyShip : public DrawableObject
 {
 
 public:
@@ -40,7 +41,6 @@ public:
 	void Die();
 	void Move();
 
-	virtual SpriteHolder * Get_MyGraph();
 
 	void FollowPlayer(Player *);
 	void FollowAlly(EnemyShip *); // need to add an array of nearest targets to get it work
@@ -77,7 +77,6 @@ protected:
 
 	bool isAlive;
 
-	SpriteHolder * MyGraph; // we need that just to be able to override our Get_MyGraph method
 
 
 

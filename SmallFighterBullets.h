@@ -12,11 +12,9 @@ public:
 
 	~SmallFighterBullets();
 
-	SpriteHolder * GetBulletGraph() override;
 
 private:
 
-	SpriteHolder * BulletGraph;
 
 	int qualityBoost;
 

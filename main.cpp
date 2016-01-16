@@ -11,6 +11,7 @@
 #include "EnemyController.h"
 #include "DisplayController.h"
 #include "SpawnController.h"
+#include "SceneController.h"
 
 
 #include "EnemyShip.h"
@@ -35,6 +36,8 @@ View OurCamera;
 
 int main()
 {
+
+	SceneController::DisplayStartMenu(800, 600);
 	
 	Start();
 	Update();
@@ -63,8 +66,8 @@ void Start()
 
 	EnemyController::InsertNewEnemyShip(Station);
 
-	DisplayController::InsertNewSprite(Station->Get_MyGraph());
-	DisplayController::InsertNewSprite(Sebamus->GetLevelOneGraph());
+	DisplayController::InsertNewDrawableObject(Station);
+	DisplayController::InsertNewDrawableObject(Sebamus);
 
 	MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft"/*, Style::Fullscreen*/); // main window.
 
@@ -106,18 +109,19 @@ void Update()
 			PlayerController::Shooting(Sebamus);
 			BulletController::MoveBullets();
 
-			DisplayController::CheckIfDestroyed();
+			
 			DisplayController::UpdatePlayerGraph(Sebamus);
+			DisplayController::CheckIfDestroyed();
 
 			//==================DISPLAYING ON THE SCEEN STARTS HERE======================
 			MainWindow->clear();
 
-			for (int i = 0; i < DisplayController::ArrayOfSprites.size(); i++)
+			for (int i = 0; i < DisplayController::ArrayOfDrawableObjects.size(); i++)
 			{
-				if (i == 0) DisplayController::ArrayOfSprites[0]->MySprite.setPosition(Sebamus->Get_x_Position(), Sebamus->Get_y_Position());
-				if (i == 1) DisplayController::ArrayOfSprites[1]->MySprite.setPosition((Sebamus->Get_x_Position()* 0.8), (Sebamus->Get_y_Position() *0.8));
+				if (i == 0) DisplayController::ArrayOfDrawableObjects[0]->GetMyGraph()->MySprite.setPosition(Sebamus->Get_x_Position(), Sebamus->Get_y_Position());
+				if (i == 1) DisplayController::ArrayOfDrawableObjects[1]->GetMyGraph()->MySprite.setPosition((Sebamus->Get_x_Position()* 0.8), (Sebamus->Get_y_Position() *0.8));
 
-				MainWindow->draw(DisplayController::ArrayOfSprites[i]->MySprite);
+				MainWindow->draw(DisplayController::ArrayOfDrawableObjects[i]->GetMyGraph()->MySprite);
 			}
 
 			MainWindow->display();

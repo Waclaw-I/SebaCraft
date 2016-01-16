@@ -1,6 +1,6 @@
 #include "SpawnController.h"
 
-double SpawnController::timeToSpawn = 5;
+double SpawnController::timeToSpawn = 1;
 double SpawnController::timeTick = 0.0166;
 
 void SpawnController::SpawnEnemies(SpaceStation * station)
@@ -9,7 +9,7 @@ void SpawnController::SpawnEnemies(SpaceStation * station)
 	{
 		station->SpawnMedivac();
 		station->SpawnSmallFighter();
-		timeToSpawn = 5;
+		timeToSpawn = 1;
 	}
 	else timeToSpawn -= timeTick;
 }

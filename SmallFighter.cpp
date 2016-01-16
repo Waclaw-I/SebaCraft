@@ -9,14 +9,14 @@ using namespace std;
 SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_health, double m_speed, int att_pow, double fire_rate, double rotation, double scale = 1) :
 	EnemyShip(spawn_x, spawn_y, acc, m_health, m_speed, att_pow, fire_rate, rotation)
 {
-	MyGraph = new SpriteHolder(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), rotation, scale);
-	MyGraph->MySprite.setPosition(spawn_x, spawn_y);
+	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), rotation, scale);
+	myGraph->MySprite.setPosition(spawn_x, spawn_y);
 
 	
 	MainCannonOneShooted = false;
 
-	this->size_x = MyGraph->Get_hitboxSize_x();
-	this->size_y = MyGraph->Get_hitboxSize_y();
+	this->size_x = myGraph->Get_hitboxSize_x();
+	this->size_y = myGraph->Get_hitboxSize_y();
 
 	SetBulletSpawnPoints(32, 10, 32, -10);
 	CalculateSpawnPoints();
@@ -26,11 +26,11 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_
 
 SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, spawn_y, 0.2, 100, 2.5, 1, 1, 90)
 {
-	MyGraph = new SpriteHolder(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), rotation, 1);
-	MyGraph->MySprite.setPosition(spawn_x, spawn_y);
+	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), rotation, 1);
+	myGraph->MySprite.setPosition(spawn_x, spawn_y);
 
-	this->size_x = MyGraph->Get_hitboxSize_x();
-	this->size_y = MyGraph->Get_hitboxSize_y();
+	this->size_x = myGraph->Get_hitboxSize_x();
+	this->size_y = myGraph->Get_hitboxSize_y();
 
 	SetBulletSpawnPoints(32, 10, 32, -10);
 	CalculateSpawnPoints();
@@ -40,10 +40,9 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, s
 
 SmallFighter::~SmallFighter()
 {
-	delete MyGraph;
+	delete myGraph;
 }
 
-SpriteHolder * SmallFighter::Get_MyGraph() { return MyGraph; }
 
 void SmallFighter::CalculateSpawnPoints()
 {
@@ -65,17 +64,17 @@ void SmallFighter::SetBulletSpawnPoints(int x1, int y1, int x2, int y2)
 void SmallFighter::Shoot()
 {
 	CalculateSpawnPoints();
-	//if (MainCannonOneShooted == false)
-	//{
+	if (MainCannonOneShooted == false)
+	{
 		SmallFighterBullets * bullet = new SmallFighterBullets(x + rotatedBulletSpawnPoint1_x, y + rotatedBulletSpawnPoint1_y, attackPower, 10, 2, rotation);
-		//MainCannonOneShooted = true;
-		BulletController::InsertNewBullet(bullet);
+		MainCannonOneShooted = true;
+		//BulletController::InsertNewBullet(bullet);
 		
-//	}
-	//else
-	//{
-		SmallFighterBullets * bullet2 = new SmallFighterBullets(x + rotatedBulletSpawnPoint2_x, y + rotatedBulletSpawnPoint2_y, attackPower, 10, 2, rotation);
-		//MainCannonOneShooted = false;
-		BulletController::InsertNewBullet(bullet2);
-	//}
+	}
+	else
+	{
+		SmallFighterBullets * bullet = new SmallFighterBullets(x + rotatedBulletSpawnPoint2_x, y + rotatedBulletSpawnPoint2_y, attackPower, 10, 2, rotation);
+		MainCannonOneShooted = false;
+		BulletController::InsertNewBullet(bullet);
+	}
 }

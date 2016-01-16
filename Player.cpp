@@ -9,12 +9,12 @@ Player::Player() // I need to change the style of gathering this data
 	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5), damage(5),
 	level(1), x(0), y(0), rotation(0), shootingSpeed(0.12), timeToShoot(0), isAlive(true) // shooting in seconds
 {
-	levelOneGraph = new SpriteHolder(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);
-	levelOneGraph->MySprite.setPosition(x, y);
+	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);
+	myGraph->MySprite.setPosition(x, y);
 	tag = "Player";
 
-	this->size_x = levelOneGraph->Get_hitboxSize_x();
-	this->size_y = levelOneGraph->Get_hitboxSize_y();
+	this->size_x = myGraph->Get_hitboxSize_x();
+	this->size_y = myGraph->Get_hitboxSize_y();
 
 	SetBulletSpawnPoints(38, -16, 38, 17); // spawn points for bullets for this specific ship
 
@@ -23,7 +23,7 @@ Player::Player() // I need to change the style of gathering this data
 
 Player::~Player()
 {
-	delete levelOneGraph;
+	delete myGraph;
 }
 
 double Player::Get_x_Position() {return x;}
@@ -188,5 +188,3 @@ void Player::ShootFromMainCannons()
 	}
 	
 }
-
-SpriteHolder * Player::GetLevelOneGraph() { return levelOneGraph; }

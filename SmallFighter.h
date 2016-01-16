@@ -9,7 +9,6 @@ public:
 	SmallFighter(double, double, double, double, double, int, double, double, double);
 	SmallFighter(double, double);
 	~SmallFighter();
-	SpriteHolder * Get_MyGraph() override;
 	void Shoot() override;
 
 	void CalculateSpawnPoints() override;

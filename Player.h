@@ -3,11 +3,12 @@
 #include "SpawnPoint.h"
 #include "PlayerBullets.h"
 #include "BulletController.h"
+#include "DrawableObject.h"
 #include <string>
 using namespace std;
 
 
-class Player
+class Player : public DrawableObject
 {
 
 public:
@@ -54,7 +55,6 @@ public:
 
 	void ShootFromMainCannons();
 
-	SpriteHolder * GetLevelOneGraph();
 
 private:
 
@@ -97,7 +97,6 @@ private:
 	double y;
 	double rotation;
 
-	SpriteHolder * levelOneGraph;
 
 
 };

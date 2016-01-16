@@ -9,7 +9,7 @@ vector <EnemyShip *>  EnemyController::ArrayOfEnemies;
 void EnemyController::InsertNewEnemyShip(EnemyShip * enemy)
 {
 	ArrayOfEnemies.push_back(enemy);
-	DisplayController::InsertNewSprite(enemy->Get_MyGraph());
+	DisplayController::InsertNewDrawableObject(enemy);
 }
 
 void EnemyController::MoveEnemyShips(Player * player)
@@ -27,8 +27,7 @@ void EnemyController::MoveEnemyShips(Player * player)
 
 			if (ArrayOfEnemies[i]->Get_IsAlive() == false)
 			{
-				ArrayOfEnemies[i]->Get_MyGraph()->LogicIsDead();
-				delete ArrayOfEnemies[i];
+				ArrayOfEnemies[i]->GetMyGraph()->LogicIsDead();
 				ArrayOfEnemies.erase(ArrayOfEnemies.begin() + i);
 			}
 		}
@@ -40,7 +39,7 @@ void EnemyController::MoveEnemyShips(Player * player)
 
 void EnemyController::UpdateSpritesPosition(int i)
 {
-	ArrayOfEnemies[i]->Get_MyGraph()->MySprite.setPosition(ArrayOfEnemies[i]->Get_x_Position(), ArrayOfEnemies[i]->Get_y_Position());
-	ArrayOfEnemies[i]->Get_MyGraph()->MySprite.setRotation(ArrayOfEnemies[i]->Get_Rotation());
+	ArrayOfEnemies[i]->GetMyGraph()->MySprite.setPosition(ArrayOfEnemies[i]->Get_x_Position(), ArrayOfEnemies[i]->Get_y_Position());
+	ArrayOfEnemies[i]->GetMyGraph()->MySprite.setRotation(ArrayOfEnemies[i]->Get_Rotation());
 	
 }

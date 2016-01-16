@@ -5,8 +5,8 @@ SmallFighterBullets::SmallFighterBullets(double spawn_x, double spawn_y, int dam
 	BulletBasicClass(spawn_x, spawn_y, damage, speed, duration, rotation), tag("EnemyBullet")
 
 {
-	BulletGraph = new SpriteHolder(LoadController::BulletTextureArray[1], LoadController::BulletTextureArray[1].Get_x(), LoadController::BulletTextureArray[1].Get_y(), rotation, 1);
-	BulletGraph->MySprite.setPosition(spawnPoint_x, spawnPoint_y);
+	myGraph = new SpriteHolder(LoadController::BulletTextureArray[1], LoadController::BulletTextureArray[1].Get_x(), LoadController::BulletTextureArray[1].Get_y(), rotation, 1);
+	myGraph->MySprite.setPosition(spawnPoint_x, spawnPoint_y);
 
 	qualityBoost = -5; // slight advance in comparision to our enemies
 	quality += qualityBoost;
@@ -36,11 +36,5 @@ bool SmallFighterBullets::CollisionWithPlayer(Player * player)
 
 SmallFighterBullets::~SmallFighterBullets()
 {
-	delete BulletGraph; // we need to free memory occupied by the graphic of the bullet
-}
-
-SpriteHolder * SmallFighterBullets::GetBulletGraph()
-{
-	return BulletGraph;
-
+	delete myGraph; // we need to free memory occupied by the graphic of the bullet
 }
