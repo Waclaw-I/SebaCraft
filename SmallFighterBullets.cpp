@@ -29,7 +29,6 @@ bool SmallFighterBullets::CollisionWithPlayer(Player * player)
 			if ((position_y >= y_start) && (position_y <= y_end))
 			{
 				player->LooseHealth(damage);
-				cout << "trafiony";
 				return true;
 			}
 		return false;

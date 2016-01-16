@@ -7,11 +7,13 @@ bool Player::MainCannonOneShooted = false;
 Player::Player() // I need to change the style of gathering this data
 	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
 	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5), damage(5),
-	level(1), x(0), y(0), rotation(0), shootingSpeed(0.12), timeToShoot(0), isAlive(true) // shooting in seconds
+	level(1), x(0), y(0), rotation(0), shootingSpeed(0.12), timeToShoot(0), isAlive(true)// shooting in seconds
 {
 	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);
 	myGraph->MySprite.setPosition(x, y);
 	tag = "Player";
+
+	rotatingCannon = new RotatingCannon(0, 0, 5, 1);
 
 	this->size_x = myGraph->Get_hitboxSize_x();
 	this->size_y = myGraph->Get_hitboxSize_y();
@@ -21,7 +23,10 @@ Player::Player() // I need to change the style of gathering this data
 	Calculate_SP_Positions(); // First time calculations. Later we ll use it during rotation manoeuvers
 }
 
-Player::~Player(){}
+Player::~Player()
+{
+	delete rotatingCannon;
+}
 
 double Player::Get_x_Position() {return x;}
 
@@ -144,6 +149,11 @@ void Player::Calculate_SP_Positions() // we can rotate our sprite, so we have to
 
 	rotatedSpawnPoint2_x = BulletSpawn2.Get_x() * cos(Get_RotationInRadians()) - BulletSpawn2.Get_y() * sin(Get_RotationInRadians());
 	rotatedSpawnPoint2_y = BulletSpawn2.Get_x() * sin(Get_RotationInRadians()) + BulletSpawn2.Get_y() * cos(Get_RotationInRadians());
+
+	float cannonX = rotatingCannon->getOnPlayerX();
+	float cannonY = rotatingCannon->getOnPlayerY();
+	rotatingCannon->move(cannonX * cos(Get_RotationInRadians()) - cannonY * sin(Get_RotationInRadians()),
+						cannonX * sin(Get_RotationInRadians()) + cannonY * cos(Get_RotationInRadians()) );
 }
 
 
@@ -186,4 +196,14 @@ void Player::ShootFromMainCannons()
 		DisplayController::InsertNewDrawableObject(bullet);
 	}
 	
+}
+
+void Player::ShootFromRotatingCannon() 
+{
+	rotatingCannon->shoot();
+}
+
+RotatingCannon& Player::GetRotatingCannon() 
+{
+	return *rotatingCannon;
 }

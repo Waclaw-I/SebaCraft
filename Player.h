@@ -4,9 +4,11 @@
 #include "PlayerBullets.h"
 #include "BulletController.h"
 #include "DrawableObject.h"
+#include "RotatingCannon.h"
 #include <string>
 using namespace std;
 
+class RotatingCannon;
 
 class Player : public DrawableObject
 {
@@ -41,7 +43,8 @@ public:
 	double Get_ActualSpeed_x();
 	double Get_ActualSpeed_y();
 	bool Get_IfAlive();
-
+	RotatingCannon& GetRotatingCannon();
+	
 	void SetTimeToShoot(double);
 
 
@@ -54,7 +57,7 @@ public:
 	void Move();
 
 	void ShootFromMainCannons();
-
+	void ShootFromRotatingCannon();
 
 private:
 
@@ -73,6 +76,8 @@ private:
 
 	SpawnPoint BulletSpawn1;
 	SpawnPoint BulletSpawn2;
+
+	RotatingCannon* rotatingCannon; 
 
 	double rotatedSpawnPoint1_x; // we need those to spawn bullets properly
 	double rotatedSpawnPoint1_y;
