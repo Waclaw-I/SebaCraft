@@ -3,6 +3,7 @@
 #include "DrawableObject.h"
 #include "PlayerBullets.h"
 #include "EnemyShip.h"
+#include "SpawnPoint.h"
 #include "Player.h"
 
 class EnemyShip;
@@ -11,8 +12,8 @@ enum ShootingMode { toDeath, theNearest };
 
 class RotatingCannon : public DrawableObject {
 public:
-	RotatingCannon(Player* _player, float _onPlayerX, float _onPlayerY, 
-				   float _rangeToAttack, float _fireRate, 
+	RotatingCannon(Player* _player,
+				   float _rangeToAttack, float _fireRate, int _attackPower = 5,
 				   ShootingMode _mode = toDeath);
 
 	~RotatingCannon();
@@ -20,6 +21,7 @@ public:
 	void rotate();
 
 	void shoot();
+	bool setTimeToShoot(double amount);
 
 	EnemyShip* scanToFindNearest();
 	bool isTargetInRange();
@@ -27,6 +29,9 @@ public:
 
 	void update();
 
+	void calculateSpawnPoints();
+	void setBulletSpawnPoints(int, int, int, int);
+	double getRotationInRadians();
 
 private:
 	ShootingMode shootingMode;
@@ -39,9 +44,17 @@ private:
 	float rangeToAttack;
 	float timeToShoot;
 	float fireRate;
+	int attackPower;
 	
 	float x;
 	float y;
-	const float onPlayerX;
-	const float onPlayerY;
+	float rotation;
+
+	SpawnPoint BulletSpawnPoint1;
+	SpawnPoint BulletSpawnPoint2;
+
+	double rotatedBulletSpawnPoint1_x;
+	double rotatedBulletSpawnPoint1_y;
+	double rotatedBulletSpawnPoint2_x;
+	double rotatedBulletSpawnPoint2_y;
 };

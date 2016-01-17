@@ -13,7 +13,7 @@ Player::Player() // I need to change the style of gathering this data
 	myGraph->MySprite.setPosition(x, y);
 	tag = "Player";
 
-	rotatingCannon = new RotatingCannon(this, 0, 0, 500, 1, theNearest);
+	rotatingCannon = new RotatingCannon(this, 500, 0.6, 5, theNearest); // player pointer, rangeOfAttack, fireRate, damage, mode
 
 	this->size_x = myGraph->Get_hitboxSize_x();
 	this->size_y = myGraph->Get_hitboxSize_y();
