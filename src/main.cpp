@@ -26,6 +26,8 @@ using namespace std;
 void Start();
 void Update();
 
+bool GameEnds;
+
 // only global variables that we need - main character and main threat.
 Player * Sebamus;
 SpaceStation * Station;
@@ -34,7 +36,7 @@ View OurCamera;
 
 int main()
 {
-
+	GameEnds = false;
 	bool state = SceneController::DisplayStartMenu(800, 600);
 	
 	if (state == true)
@@ -88,15 +90,14 @@ void Update()
 	float timeStep = 0.0166f; // 60FPS
 
 
-	while (MainWindow->isOpen())
+	while (MainWindow->isOpen() && !GameEnds)
 	{
 		accumulator += timer.restart().asSeconds();
 
 		if (accumulator >= timeStep)
 		{
-
 			Event zdarzenie;		// escape controller, lol. I should put it inside GameController later
-			while (MainWindow->pollEvent(zdarzenie))
+			while (MainWindow->pollEvent(zdarzenie) )
 			{
 				if (zdarzenie.type == Event::KeyPressed && zdarzenie.key.code == Keyboard::Escape) MainWindow->close();
 				if (zdarzenie.type == Event::Closed) MainWindow->close();
@@ -116,6 +117,8 @@ void Update()
 			
 			DisplayController::UpdatePlayerGraph(Sebamus);
 			DisplayController::CheckIfDestroyed();
+
+			if (Station->Get_IsAlive() == false) GameEnds = true;
 
 			//==================DISPLAYING ON THE SCEEN STARTS HERE======================
 			MainWindow->clear();

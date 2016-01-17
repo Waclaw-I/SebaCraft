@@ -1,5 +1,9 @@
 /x64
 /Debug
+/build
+
+!/build/Graphs
+!/build/Fonts
 
 SebaCraft.vcxproj
 SebaCraft.vcxproj.user

@@ -13,6 +13,14 @@ SpaceStation::SpaceStation(double rotationSpeed, double scale) : EnemyShip(1000,
 	SetShipSpawnPoints(-78, 1, 1, 78); // for this specific sprite
 	CalculateSpawnPoints(); 
 
+	this->size_x = myGraph->Get_hitboxSize_x();
+	this->size_y = myGraph->Get_hitboxSize_y();
+
+	heightOfHpBar = (myGraph->Get_graphSize_y() / 2) -400;
+	widthOfHpBar = (myGraph->Get_graphSize_y() / 2) - 400;
+
+	hpBar->GetText().setScale(3, 3);
+
 }
 
 SpaceStation::~SpaceStation(){}
@@ -32,6 +40,7 @@ void SpaceStation::RotateRight()
 	rotation += rotationSpeed;
 
 	CalculateSpawnPoints();
+	UpdateHpBar();
 }
 
 
