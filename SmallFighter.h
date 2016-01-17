@@ -9,7 +9,7 @@ public:
 	SmallFighter(double, double, double, double, double, int, double, double, double);
 	SmallFighter(double, double);
 	~SmallFighter();
-	void Shoot() override;
+	void Shoot(DrawableObject *) override;
 
 	void CalculateSpawnPoints() override;
 

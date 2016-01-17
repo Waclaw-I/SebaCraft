@@ -37,7 +37,6 @@ void TextLabel::SetColor(sf::Color color)
 
 bool TextLabel::IsMouseOver(float mouse_x, float mouse_y)
 {
-	cout << position_y << endl;
 	if (mouse_x > position_x && mouse_x < position_x + size_x)
 		if (mouse_y > position_y + 10 && mouse_y < position_y + size_y + 10) return true;
 

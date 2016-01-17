@@ -25,7 +25,7 @@ void EnemyController::MoveEnemyShips(Player * player)
 			ArrayOfEnemies[i]->Move();
 
 			// here we should insert a delay for each shoot
-			if (ArrayOfEnemies[i]->SetTimeToShoot(0.0166)) ArrayOfEnemies[i]->Shoot();
+			if (ArrayOfEnemies[i]->SetTimeToShoot(0.0166)) ArrayOfEnemies[i]->Shoot(player);
 				
 
 			if (ArrayOfEnemies[i]->Get_IsAlive() == false)

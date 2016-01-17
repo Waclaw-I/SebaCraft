@@ -84,7 +84,7 @@ EnemyShip* RotatingCannon::scanToFindNearest()
 		}
 	}
 
-	if (theNearestDistance) 
+	if (theNearestTarget) 
 		return theNearestTarget;
 	else
 		return nullptr;

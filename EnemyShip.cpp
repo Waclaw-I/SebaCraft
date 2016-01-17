@@ -49,6 +49,15 @@ double EnemyShip::Get_ActualSpeed_y() { return actualSpeed_y; }
 
 double EnemyShip::GetActualHealth() { return actualHealth; }
 
+double EnemyShip::GetRange() { return range; }
+
+double EnemyShip::CalculateDistance(double x1, double y1, double x2, double y2)
+{
+	using std::sqrt;
+	using std::pow;
+	return sqrt((pow(x1 - x2, 2) + (pow(y1 - y2, 2))));
+}
+
 double EnemyShip::GetRotationInRadians()
 {
 	return (rotation * (3.14 / 180));
@@ -174,7 +183,7 @@ void EnemyShip::FollowAlly(EnemyShip * ally)
 	if (distance > accelerationDistance) Accelerate();
 }
 
-void EnemyShip::Shoot(){}
+void EnemyShip::Shoot(DrawableObject * object){}
 
 void EnemyShip::CalculateSpawnPoints() {} // we can rotate our sprite, so we have to calculate new position of spawn points for bullets/ships
 

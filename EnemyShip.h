@@ -18,6 +18,8 @@ public:
 
 	double Get_x_Position();
 	double Get_y_Position();
+
+	double CalculateDistance(double, double, double, double);
 	
 	int GetSize_x();
 	int GetSize_y();
@@ -27,6 +29,7 @@ public:
 	double Get_ActualSpeed_y();
 	double GetActualHealth();
 	double GetRotationInRadians();
+	double GetRange();
 
 	bool Get_IsAlive();
 
@@ -45,7 +48,7 @@ public:
 	void FollowPlayer(Player *);
 	void FollowAlly(EnemyShip *); // need to add an array of nearest targets to get it work
 
-	virtual void Shoot();
+	virtual void Shoot(DrawableObject *);
 	virtual bool SetTimeToShoot(double);
 protected:
 
@@ -65,6 +68,7 @@ protected:
 	int attackPower;
 	double fireRate;
 	double timeToShoot;
+	double range;
 
 	int size_x;
 	int size_y;
