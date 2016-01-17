@@ -22,6 +22,8 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_
 	CalculateSpawnPoints();
 
 	accelerationDistance = 150; // our SmallFighter is supposed to sit on our back! He wont slow down until he gets this close to the Player
+	heightOfHpBar = (myGraph->Get_graphSize_y() / 2) + 10;
+	widthOfHpBar = (myGraph->Get_graphSize_y() / 2);
 }
 
 SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, spawn_y, 0.2, 100, 2.5, 1, 1, 90)
@@ -36,6 +38,8 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, s
 	CalculateSpawnPoints();
 
 	accelerationDistance = 150;
+	heightOfHpBar = (myGraph->Get_graphSize_y() / 2) + 10;
+	widthOfHpBar = (myGraph->Get_graphSize_y() / 2);
 }
 
 SmallFighter::~SmallFighter()

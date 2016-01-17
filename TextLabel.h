@@ -11,7 +11,7 @@ public:
 	TextLabel(std::string, int, float, float );
 	~TextLabel();
 
-	sf::Text GetText();
+	sf::Text & GetText();
 
 	void SetColor(sf::Color);
 
@@ -22,6 +22,12 @@ public:
 	float GetSize_x();
 	float GetSize_y();
 
+	void Hide();
+	void Show();
+
+	bool GetIsVisible();
+
+	void UpdateHp(double, double); // actual and max health
 	void UpdateTextPosition();
 
 	bool IsMouseOver(float, float);
@@ -35,6 +41,8 @@ private:
 	float position_y;
 	float size_x;
 	float size_y;
+
+	bool isVisible;
 
 
 };

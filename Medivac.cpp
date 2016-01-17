@@ -14,6 +14,8 @@ Medivac::Medivac(double spawn_x, double spawn_y, double acc, double m_health, do
 	this->size_y = myGraph->Get_hitboxSize_y();
 
 	accelerationDistance = 200; // Medivac will try to hide behind mainforce and heal his allies
+	heightOfHpBar = (myGraph->Get_graphSize_y() / 2) + 10;
+	widthOfHpBar = (myGraph->Get_graphSize_y() / 2);
 }
 
 Medivac::Medivac(double spawn_x, double spawn_y) : EnemyShip(spawn_x, spawn_y, 0.15, 100, 2, 1, 1, 90)
@@ -25,6 +27,8 @@ Medivac::Medivac(double spawn_x, double spawn_y) : EnemyShip(spawn_x, spawn_y, 0
 	this->size_y = myGraph->Get_hitboxSize_y();
 
 	accelerationDistance = 200;
+	heightOfHpBar = (myGraph->Get_graphSize_y() / 2) + 10;
+	widthOfHpBar = (myGraph->Get_graphSize_y() / 2);
 }
 
 Medivac::~Medivac(){}

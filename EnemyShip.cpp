@@ -24,7 +24,9 @@ EnemyShip::EnemyShip(double spawn_x, double spawn_y, double acc, double m_health
 	timeToShoot = 0;
 
 	hpBar = new TextLabel(to_string(actualHealth) + "/" + to_string(maxHealth), 10, x, y);
-	hpBar->GetText().setColor(sf::Color::Green);
+
+	hpBar->UpdateHp(actualHealth, maxHealth);
+	hpBar->SetColor(sf::Color::Green);
 }
 
 EnemyShip::~EnemyShip() { }
@@ -56,9 +58,14 @@ bool EnemyShip::Get_IsAlive(){ return isAlive; }
 
 void EnemyShip::UpdateHpBar()
 {
-	hpBar->SetPosition_x(x);
-	hpBar->SetPosition_y(y);
+	hpBar->SetPosition_x(x-widthOfHpBar);
+	hpBar->SetPosition_y(y-heightOfHpBar);
 	hpBar->UpdateTextPosition();
+	hpBar->UpdateHp(actualHealth, maxHealth);
+
+	if (actualHealth / maxHealth > 0.7) hpBar->SetColor(sf::Color::Green);
+	if (actualHealth / maxHealth <= 0.7) hpBar->SetColor(sf::Color::Yellow);
+	if (actualHealth / maxHealth <= 0.3) hpBar->SetColor(sf::Color::Red);
 }
 
 
