@@ -2,32 +2,40 @@
 
 #include "DrawableObject.h"
 #include "PlayerBullets.h"
+#include "EnemyShip.h"
+#include "Player.h"
+
+class EnemyShip;
 
 enum ShootingMode { toDeath, theNearest };
 
 class RotatingCannon : public DrawableObject {
 public:
-	RotatingCannon(float _onPlayerX, float _onPlayerY, 
+	RotatingCannon(Player* _player, float _onPlayerX, float _onPlayerY, 
 				   float _rangeToAttack, float _fireRate, 
 				   ShootingMode _mode = toDeath);
 
 	~RotatingCannon();
 
-	void move(float _x, float _y);
+	void rotate();
 
 	void shoot();
 
-	void scanToFindNearest();
-	bool isTargetInRange(DrawableObject* target);
-	void changeTarget(DrawableObject* newTarget);
+	EnemyShip* scanToFindNearest();
+	bool isTargetInRange();
+	void changeTarget(EnemyShip* newTarget);
 
-	float getOnPlayerX();
-	float getOnPlayerY();
+	void update();
 
 
 private:
 	ShootingMode shootingMode;
-	DrawableObject* currentTarget;
+	EnemyShip* currentTarget;
+	Player* player;
+
+	EnemyShip* theNearestTarget;
+	float theNearestDistance;
+
 	float rangeToAttack;
 	float timeToShoot;
 	float fireRate;

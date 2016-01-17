@@ -22,6 +22,9 @@ file(GLOB sebaFiles
     "*.cpp"
 )
 
+#setting standard cpp11
+SET(GCC_COVERAGE_COMPILE_FLAGS "-std=c++11")
+SET( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 
 # Define sources and executable
 set(EXECUTABLE_NAME "SebaCraft")

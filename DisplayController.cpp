@@ -42,7 +42,8 @@ void DisplayController::UpdatePlayerGraph(Player * player)
 	player->GetMyGraph()->MySprite.setPosition(playerX, playerY);
 	player->GetMyGraph()->MySprite.setRotation(playerRotation);
 
-	cannon.GetMyGraph()->MySprite.setPosition(playerX, playerY);	
+	cannon.GetMyGraph()->MySprite.setPosition(playerX, playerY);
+	cannon.update();
 }
 
 void DisplayController::CheckIfDestroyed()

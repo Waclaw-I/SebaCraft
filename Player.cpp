@@ -13,7 +13,7 @@ Player::Player() // I need to change the style of gathering this data
 	myGraph->MySprite.setPosition(x, y);
 	tag = "Player";
 
-	rotatingCannon = new RotatingCannon(0, 0, 5, 1);
+	rotatingCannon = new RotatingCannon(this, 0, 0, 500, 1, theNearest);
 
 	this->size_x = myGraph->Get_hitboxSize_x();
 	this->size_y = myGraph->Get_hitboxSize_y();
@@ -150,10 +150,6 @@ void Player::Calculate_SP_Positions() // we can rotate our sprite, so we have to
 	rotatedSpawnPoint2_x = BulletSpawn2.Get_x() * cos(Get_RotationInRadians()) - BulletSpawn2.Get_y() * sin(Get_RotationInRadians());
 	rotatedSpawnPoint2_y = BulletSpawn2.Get_x() * sin(Get_RotationInRadians()) + BulletSpawn2.Get_y() * cos(Get_RotationInRadians());
 
-	float cannonX = rotatingCannon->getOnPlayerX();
-	float cannonY = rotatingCannon->getOnPlayerY();
-	rotatingCannon->move(cannonX * cos(Get_RotationInRadians()) - cannonY * sin(Get_RotationInRadians()),
-						cannonX * sin(Get_RotationInRadians()) + cannonY * cos(Get_RotationInRadians()) );
 }
 
 
@@ -198,9 +194,9 @@ void Player::ShootFromMainCannons()
 	
 }
 
-void Player::ShootFromRotatingCannon() 
+void Player::UpdateRotatingCannon() 
 {
-	rotatingCannon->shoot();
+	rotatingCannon->update();
 }
 
 RotatingCannon& Player::GetRotatingCannon() 

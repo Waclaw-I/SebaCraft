@@ -57,7 +57,7 @@ public:
 	void Move();
 
 	void ShootFromMainCannons();
-	void ShootFromRotatingCannon();
+	void UpdateRotatingCannon();
 
 private:
 
