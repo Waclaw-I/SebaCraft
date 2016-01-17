@@ -1,6 +1,6 @@
 #Change this if you need to target a specific CMake version
 cmake_minimum_required(VERSION 2.6)
-project(myproject)
+project(SebaCraft)
 
 # Enable debug symbols by default
 if(CMAKE_BUILD_TYPE STREQUAL "")
@@ -16,10 +16,11 @@ configure_file(
   "${PROJECT_BINARY_DIR}/config.h"
   )
 include_directories("${PROJECT_BINARY_DIR}")
+include_directories(headers)
 
 file(GLOB sebaFiles
-    "*.h"
-    "*.cpp"
+	"headers/*.h"
+    "src/*.cpp"
 )
 
 #setting standard cpp11
