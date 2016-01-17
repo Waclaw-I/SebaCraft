@@ -72,6 +72,9 @@ protected:
 
 	double x;
 	double y;
+
+	double widthOfHpBar;
+	double heightOfHpBar;
 	double rotation;
 	double rotationSpeed;
 
