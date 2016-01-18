@@ -4,7 +4,7 @@
 using namespace std;
 
 
-SpaceStation::SpaceStation(double rotationSpeed, double scale) : EnemyShip(1000, 1000, 0, 500, 0, 0, 0, 90)
+SpaceStation::SpaceStation(double rotationSpeed, double scale) : EnemyShip(1000, 1000, 0, 750, 0, 0, 0, 90)
 {
 	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[3], LoadController::ShipTexturesArray[3].Get_x(), LoadController::ShipTexturesArray[3].Get_y(), rotation, scale);
 	myGraph->MySprite.setPosition(spawn_x, spawn_y);
@@ -13,8 +13,8 @@ SpaceStation::SpaceStation(double rotationSpeed, double scale) : EnemyShip(1000,
 	SetShipSpawnPoints(-78, 1, 1, 78); // for this specific sprite
 	CalculateSpawnPoints(); 
 
-	this->size_x = myGraph->Get_hitboxSize_x();
-	this->size_y = myGraph->Get_hitboxSize_y();
+	this->size_x = myGraph->Get_hitboxSize_x()/2;
+	this->size_y = myGraph->Get_hitboxSize_y()/2;
 
 	heightOfHpBar = (myGraph->Get_graphSize_y() / 2) -400;
 	widthOfHpBar = (myGraph->Get_graphSize_y() / 2) - 400;

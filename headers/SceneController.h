@@ -10,8 +10,15 @@ class SceneController
 {
 public:
 
-	static bool DisplayStartMenu(int, int); // x and y for window resolution
+	static int sceneNumber;
+
+	static void DisplayStartMenu(int, int); // x and y for window resolution
+	static bool DisplayPrologue();
+	static void DisplayDefeat();
+	static void DisplayVictory();
 
 private:
-	static int sceneNumber;
+	
+	static int resolution_x;
+	static int resolution_y;
 };

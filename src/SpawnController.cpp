@@ -9,7 +9,7 @@ void SpawnController::SpawnEnemies(SpaceStation * station)
 	{
 		station->SpawnMedivac();
 		station->SpawnSmallFighter();
-		timeToSpawn = 100;
+		timeToSpawn = 15;
 	}
 	else timeToSpawn -= timeTick;
 }

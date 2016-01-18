@@ -47,6 +47,8 @@ public:
 	
 	void SetTimeToShoot(double);
 
+	void UpdateHpBar();
+
 
 	void RotateLeft();
 	void RotateRight();
@@ -59,6 +61,12 @@ public:
 	void ShootFromMainCannons();
 	void UpdateRotatingCannon();
 
+	int GetSmallFighterDestroyed();
+	int GetMedivacDestroyed();
+
+	void IncreaseSmallFighterDestroyed();
+	void IncreaseMedivacDestroyed();
+
 private:
 
 	string tag;
@@ -66,9 +74,9 @@ private:
 	int size_x;
 	int size_y;
 
-	int actualHealth; // actual health, energy and capacity
-	int actualEnergy;
-	int actualCapacity;
+	double actualHealth; // actual health, energy and capacity
+	double actualEnergy;
+	double actualCapacity;
 	double actualSpeed_x;
 	double actualSpeed_y;
 	double acceleration; // how fast can you gain more speed
@@ -101,6 +109,14 @@ private:
 	double x;
 	double y;
 	double rotation;
+
+	double widthOfHpBar;
+	double heightOfHpBar;
+
+	// STATISTIC PURPOSE ONLY
+
+	int SmallFighterDestroyed;
+	int MedivacDestroyed;
 
 
 

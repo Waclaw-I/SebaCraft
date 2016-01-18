@@ -14,7 +14,6 @@ TextLabel::TextLabel(std::string text, int size, float x, float y)
 	ourText.setCharacterSize(size);
 
 	ourText.setPosition(x, y);
-
 	this->position_x = ourText.getPosition().x;
 	this->position_y = ourText.getPosition().y;
 

@@ -51,6 +51,8 @@ double EnemyShip::GetActualHealth() { return actualHealth; }
 
 double EnemyShip::GetRange() { return range; }
 
+string EnemyShip::GetTag() { return tag; }
+
 double EnemyShip::CalculateDistance(double x1, double y1, double x2, double y2)
 {
 	using std::sqrt;

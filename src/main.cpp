@@ -27,6 +27,7 @@ void Start();
 void Update();
 
 bool GameEnds;
+bool IsVictorious;
 
 // only global variables that we need - main character and main threat.
 Player * Sebamus;
@@ -37,14 +38,17 @@ View OurCamera;
 int main()
 {
 	GameEnds = false;
-	bool state = SceneController::DisplayStartMenu(800, 600);
+	SceneController::DisplayStartMenu(800,600);
+	if (SceneController::sceneNumber == 0) return 0;
+	bool state = SceneController::DisplayPrologue();
 	
 	if (state == true)
 	{
 		Start();
 		Update();
 	}
-	else
+	if (IsVictorious) SceneController::DisplayVictory();
+	else SceneController::DisplayDefeat();
 
 	return 0;
 }
@@ -74,8 +78,7 @@ void Start()
 	DisplayController::InsertNewDrawableObject(Sebamus);
 	DisplayController::InsertNewDrawableObject(&Sebamus->GetRotatingCannon());
 
-	//MainWindow = new RenderWindow(VideoMode(1366, 768, 32), "SebaCraft", Style::Fullscreen); // main window.
-	MainWindow = new RenderWindow(VideoMode::getDesktopMode(), "SebaCraft"/*, Style::Fullscreen*/); 
+	MainWindow = new RenderWindow(VideoMode::getDesktopMode(), "SebaCraft", Style::Fullscreen); 
 
 	OurCamera = MainWindow->getDefaultView();
 	OurCamera.setViewport(FloatRect(0, 0, 1, 1));
@@ -118,7 +121,16 @@ void Update()
 			DisplayController::UpdatePlayerGraph(Sebamus);
 			DisplayController::CheckIfDestroyed();
 
-			if (Station->Get_IsAlive() == false) GameEnds = true;
+			if (Station->Get_IsAlive() == false)
+			{
+				GameEnds = true;
+				IsVictorious = true;
+			}
+			if (Sebamus->Get_IfAlive() == false)
+			{
+				GameEnds = true;
+				IsVictorious = false;
+			}
 
 			//==================DISPLAYING ON THE SCEEN STARTS HERE======================
 			MainWindow->clear();
@@ -135,6 +147,8 @@ void Update()
 			{
 				MainWindow->draw(EnemyController::ArrayOfEnemies[i]->GetHpBar()->GetText()); // our health bars
 			}
+
+			MainWindow->draw(Sebamus->GetHpBar()->GetText());
 
 			MainWindow->display();
 			//============================== END =====================================

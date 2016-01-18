@@ -30,6 +30,8 @@ void EnemyController::MoveEnemyShips(Player * player)
 
 			if (ArrayOfEnemies[i]->Get_IsAlive() == false)
 			{
+				if (ArrayOfEnemies[i]->GetTag() == "SmallFighter") player->IncreaseSmallFighterDestroyed();
+				if (ArrayOfEnemies[i]->GetTag() == "Medivac") player->IncreaseMedivacDestroyed();
 				ArrayOfEnemies[i]->GetMyGraph()->LogicIsDead();
 				ArrayOfEnemies.erase(ArrayOfEnemies.begin() + i);
 			}

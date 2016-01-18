@@ -30,6 +30,7 @@ public:
 	double GetActualHealth();
 	double GetRotationInRadians();
 	double GetRange();
+	string GetTag();
 
 	bool Get_IsAlive();
 

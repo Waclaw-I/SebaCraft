@@ -9,6 +9,7 @@ using namespace std;
 SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_health, double m_speed, int att_pow, double fire_rate, double rotation, double scale = 1) :
 	EnemyShip(spawn_x, spawn_y, acc, m_health, m_speed, att_pow, fire_rate, rotation)
 {
+	tag = "SmallFighter";
 	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), rotation, scale);
 	myGraph->MySprite.setPosition(spawn_x, spawn_y);
 
@@ -27,7 +28,7 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y, double acc, double m_
 	widthOfHpBar = (myGraph->Get_graphSize_y() / 2);
 }
 
-SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, spawn_y, 0.2, 100, 2.5, 1, 1, 90)
+SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, spawn_y, 0.2, 50, 2.5, 2, 0.7, 90)
 {
 	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[2], LoadController::ShipTexturesArray[2].Get_x(), LoadController::ShipTexturesArray[2].Get_y(), rotation, 1);
 	myGraph->MySprite.setPosition(spawn_x, spawn_y);
@@ -35,7 +36,7 @@ SmallFighter::SmallFighter(double spawn_x, double spawn_y): EnemyShip(spawn_x, s
 	this->size_x = myGraph->Get_hitboxSize_x();
 	this->size_y = myGraph->Get_hitboxSize_y();
 
-	range = 300;
+	range = 500;
 
 	SetBulletSpawnPoints(32, 10, 32, -10);
 	CalculateSpawnPoints();
@@ -74,15 +75,14 @@ void SmallFighter::Shoot(DrawableObject * object)
 	CalculateSpawnPoints();
 	double distance = CalculateDistance(x, y, object->GetMyGraph()->MySprite.getPosition().x, object->GetMyGraph()->MySprite.getPosition().y);
 	// we need to move such info as position of the object etc to DrawableObject, instead of Player and EnemyShip
-	cout << distance << " : " << range << endl;
 
 		if (distance <= range)
 		{
-			SmallFighterBullets * bullet1 = new SmallFighterBullets(x + rotatedBulletSpawnPoint1_x, y + rotatedBulletSpawnPoint1_y, attackPower, 10, 2, rotation);
+			SmallFighterBullets * bullet1 = new SmallFighterBullets(x + rotatedBulletSpawnPoint1_x, y + rotatedBulletSpawnPoint1_y, attackPower, 15, 2, rotation);
 			BulletController::InsertNewBullet(bullet1);
 			DisplayController::InsertNewDrawableObject(bullet1);
 
-			SmallFighterBullets * bullet2 = new SmallFighterBullets(x + rotatedBulletSpawnPoint2_x, y + rotatedBulletSpawnPoint2_y, attackPower, 10, 2, rotation);
+			SmallFighterBullets * bullet2 = new SmallFighterBullets(x + rotatedBulletSpawnPoint2_x, y + rotatedBulletSpawnPoint2_y, attackPower, 15, 2, rotation);
 			BulletController::InsertNewBullet(bullet2);
 			DisplayController::InsertNewDrawableObject(bullet2);
 		}

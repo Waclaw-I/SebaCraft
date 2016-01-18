@@ -6,14 +6,14 @@ bool Player::MainCannonOneShooted = false;
 
 Player::Player() // I need to change the style of gathering this data
 	: actualHealth(100), actualEnergy(200), actualCapacity(50), actualSpeed_x(0), actualSpeed_y(0), acceleration(0.1),
-	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5), damage(5),
-	level(1), x(0), y(0), rotation(0), shootingSpeed(0.12), timeToShoot(0), isAlive(true)// shooting in seconds
+	rotationSpeed(2.5), maxHealth(100), maxEnergy(200), maxCapacity(50), maxSpeed(2.5), damage(1),
+	level(1), x(0), y(0), rotation(0), shootingSpeed(0.09), timeToShoot(0), isAlive(true)// shooting in seconds
 {
 	myGraph = new SpriteHolder(LoadController::ShipTexturesArray[0], LoadController::ShipTexturesArray[0].Get_x(), LoadController::ShipTexturesArray[0].Get_y(), 90, 1);
 	myGraph->MySprite.setPosition(x, y);
 	tag = "Player";
 
-	rotatingCannon = new RotatingCannon(this, 500, 0.6, 5, theNearest); // player pointer, rangeOfAttack, fireRate, damage, mode
+	rotatingCannon = new RotatingCannon(this, 500, 0.18, 2, theNearest); // player pointer, rangeOfAttack, fireRate, damage, mode
 
 	this->size_x = myGraph->Get_hitboxSize_x();
 	this->size_y = myGraph->Get_hitboxSize_y();
@@ -21,11 +21,36 @@ Player::Player() // I need to change the style of gathering this data
 	SetBulletSpawnPoints(38, -16, 38, 17); // spawn points for bullets for this specific ship
 
 	Calculate_SP_Positions(); // First time calculations. Later we ll use it during rotation manoeuvers
+
+	MedivacDestroyed = 0;
+	SmallFighterDestroyed = 0;
+
+	hpBar = new TextLabel(to_string(actualHealth) + "/" + to_string(maxHealth), 10, x, y);
+
+	UpdateHpBar();
+	//hpBar->SetColor(sf::Color::Green);
+
+	heightOfHpBar = (myGraph->Get_graphSize_y() / 2) + 20;
+	widthOfHpBar = (myGraph->Get_graphSize_y() / 2);
 }
 
 Player::~Player()
 {
 	delete rotatingCannon;
+}
+
+void Player::UpdateHpBar()
+{
+	hpBar->SetPosition_x(x - widthOfHpBar);
+	hpBar->SetPosition_y(y - heightOfHpBar);
+	hpBar->UpdateTextPosition();
+	hpBar->UpdateHp(actualHealth, maxHealth);
+
+	cout << maxHealth/actualHealth << endl;
+
+	if (actualHealth / maxHealth > 0.7) hpBar->SetColor(sf::Color::Green);
+	if (actualHealth / maxHealth <= 0.7) hpBar->SetColor(sf::Color::Yellow);
+	if (actualHealth / maxHealth <= 0.3) hpBar->SetColor(sf::Color::Red);
 }
 
 double Player::Get_x_Position() {return x;}
@@ -71,7 +96,11 @@ void Player::SetBulletSpawnPoints(int x1, int y1, int x2, int y2)
 	BulletSpawn2.Set_y(y2);
 }
 
-void Player::LooseHealth(int amount) {actualHealth -= amount;}
+void Player::LooseHealth(int amount)
+{
+	actualHealth -= amount;
+	if (actualHealth <= 0) Die();
+}
 
 void Player::LooseEnergy(int amount) {if (actualEnergy > 0) actualEnergy -= amount;}
 
@@ -173,20 +202,21 @@ void Player::Move()
 {
 	x += actualSpeed_x;
 	y += actualSpeed_y;
+	UpdateHpBar();
 }
 
 void Player::ShootFromMainCannons()
 {
 	if (MainCannonOneShooted == false) // we shoot one time from the first cannon and then from another one
 	{
-		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, damage, 10, 2, rotation);
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint1_x, y + rotatedSpawnPoint1_y, damage, 15, 2, rotation);
 		MainCannonOneShooted = true;
 		BulletController::InsertNewBullet(bullet);
 		DisplayController::InsertNewDrawableObject(bullet);
 	}
 	else
 	{
-		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, damage, 10, 2, rotation);
+		PlayerBullets * bullet = new PlayerBullets(x + rotatedSpawnPoint2_x, y + rotatedSpawnPoint2_y, damage, 15, 2, rotation);
 		MainCannonOneShooted = false;
 		BulletController::InsertNewBullet(bullet);
 		DisplayController::InsertNewDrawableObject(bullet);
@@ -203,3 +233,9 @@ RotatingCannon& Player::GetRotatingCannon()
 {
 	return *rotatingCannon;
 }
+
+void Player::IncreaseMedivacDestroyed() { MedivacDestroyed++; }
+void Player::IncreaseSmallFighterDestroyed() { SmallFighterDestroyed++; }
+
+int Player::GetMedivacDestroyed() { return MedivacDestroyed; }
+int Player::GetSmallFighterDestroyed() { return SmallFighterDestroyed; }
